@@ -4,9 +4,100 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>見学事前シート | チャイルドケアサポート</title>
+
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      margin: 0;
+      background: #f7f5f0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      color: #70856f;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin: 0 0 20px;
+    }
+
+    #status {
+      line-height: 1.8;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>見学事前シート</h1>
-  <p>準備中です。</p>
+
+  <div class="container">
+    <div class="card">
+
+      <div class="eyebrow">
+        CHILD CARE SUPPORT / PRE-VISIT SHEET
+      </div>
+
+      <h1>見学事前シート</h1>
+
+      <div id="status">
+        LINEとの接続を確認しています…
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const LIFF_ID = '2011888851-44NDMiTg';
+
+    async function initializeLiff() {
+      const status = document.getElementById('status');
+
+      try {
+        await liff.init({
+          liffId: LIFF_ID
+        });
+
+        if (!liff.isLoggedIn()) {
+          liff.login();
+          return;
+        }
+
+        const profile = await liff.getProfile();
+
+        status.innerHTML =
+          'LINEとの接続に成功しました。<br><br>' +
+          '表示名：' + profile.displayName + '<br>' +
+          'LINE User ID：' + profile.userId;
+
+      } catch (error) {
+        console.error(error);
+
+        status.textContent =
+          'LINEとの接続確認中にエラーが発生しました。';
+      }
+    }
+
+    initializeLiff();
+  </script>
+
 </body>
 </html>
