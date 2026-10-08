@@ -3,14 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>見学事前シート | チャイルドケアサポート</title>
+  <title>見学事前シート｜チャイルドケアサポート</title>
 
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
       margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
       background: #f7f5f0;
       color: #333;
     }
@@ -18,31 +28,93 @@
     .container {
       max-width: 640px;
       margin: 0 auto;
-      padding: 48px 24px;
+      padding: 48px 24px 80px;
     }
 
     .card {
       background: #fff;
-      border-radius: 16px;
+      border-radius: 18px;
       padding: 32px 24px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     }
 
     .eyebrow {
+      margin-bottom: 10px;
+      color: #70856f;
       font-size: 12px;
       letter-spacing: 0.16em;
-      color: #70856f;
-      margin-bottom: 10px;
     }
 
     h1 {
-      font-size: 26px;
       margin: 0 0 20px;
+      font-size: 28px;
+      line-height: 1.4;
     }
 
-    #status {
-      line-height: 1.8;
+    .status {
+      margin-bottom: 28px;
       color: #666;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .loading {
+      padding: 22px 0;
+      color: #777;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .error {
+      display: none;
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 12px;
+      background: #fff3f3;
+      color: #9b3d3d;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .application {
+      display: none;
+    }
+
+    .section-title {
+      margin: 28px 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e8e5df;
+      color: #70856f;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .info-row {
+      padding: 11px 0;
+      border-bottom: 1px solid #f0eee9;
+    }
+
+    .info-label {
+      margin-bottom: 5px;
+      color: #888;
+      font-size: 12px;
+    }
+
+    .info-value {
+      font-size: 16px;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+
+    .notice {
+      margin-top: 26px;
+      padding: 16px;
+      border-radius: 12px;
+      background: #f3f6f1;
+      color: #526151;
+      font-size: 14px;
+      line-height: 1.8;
     }
   </style>
 </head>
@@ -58,43 +130,241 @@
 
       <h1>見学事前シート</h1>
 
-      <div id="status">
+      <div id="status" class="status">
         LINEとの接続を確認しています…
+      </div>
+
+      <div id="loading" class="loading">
+        見学申込情報を確認しています…
+      </div>
+
+      <div id="error" class="error"></div>
+
+      <div id="application" class="application">
+
+        <div class="section-title">
+          お申込み済みの内容
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">見学先</div>
+          <div id="nursery" class="info-value"></div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">お子さま氏名</div>
+          <div id="childName" class="info-value"></div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">生年月日</div>
+          <div id="birthDate" class="info-value"></div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">希望クラス</div>
+          <div id="desiredClass" class="info-value"></div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">入園希望時期</div>
+          <div id="desiredEntry" class="info-value"></div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">保護者氏名</div>
+          <div id="guardianName" class="info-value"></div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">続柄</div>
+          <div id="guardianRelation" class="info-value"></div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">電話番号</div>
+          <div id="phone" class="info-value"></div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">管理ID</div>
+          <div id="managementId" class="info-value"></div>
+        </div>
+
+        <div class="notice">
+          上記は見学申込時にご入力いただいた内容です。<br>
+          続いて、見学前に必要な情報をご入力いただきます。
+        </div>
+
       </div>
 
     </div>
   </div>
 
+
   <script>
     const LIFF_ID = '2011888851-44NDMiTg';
 
+    const API_URL =
+      'https://script.google.com/macros/s/AKfycbwZaCZuEWMom6YFsxJ40O-fvVx_5LQH7EnZ4haHiby7r2w48EK_WO5czHHkbRVPHKqxVA/exec';
+
+
     async function initializeLiff() {
-      const status = document.getElementById('status');
+
+      const status =
+        document.getElementById('status');
+
+      const loading =
+        document.getElementById('loading');
+
+      const errorBox =
+        document.getElementById('error');
 
       try {
+
         await liff.init({
           liffId: LIFF_ID
         });
 
+
         if (!liff.isLoggedIn()) {
+
           liff.login();
+
           return;
         }
 
-        const profile = await liff.getProfile();
 
-        status.innerHTML =
-          'LINEとの接続に成功しました。<br><br>' +
-          '表示名：' + profile.displayName + '<br>' +
-          'LINE User ID：' + profile.userId;
+        const profile =
+          await liff.getProfile();
 
-      } catch (error) {
-        console.error(error);
 
         status.textContent =
-          'LINEとの接続確認中にエラーが発生しました。';
+          'LINEとの接続に成功しました。';
+
+
+        const url =
+          API_URL +
+          '?action=getVisitApplication' +
+          '&lineUserId=' +
+          encodeURIComponent(profile.userId);
+
+
+        const response =
+          await fetch(url);
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            '見学申込情報の取得に失敗しました。'
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            '見学申込情報が見つかりませんでした。'
+          );
+
+        }
+
+
+        showApplication(
+          result.application
+        );
+
+
+        loading.style.display =
+          'none';
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        loading.style.display =
+          'none';
+
+        errorBox.style.display =
+          'block';
+
+        errorBox.textContent =
+          error.message ||
+          '情報の取得中にエラーが発生しました。';
+
       }
+
     }
+
+
+    function showApplication(data) {
+
+      document.getElementById('nursery').textContent =
+        data.nursery || '—';
+
+      document.getElementById('childName').textContent =
+        data.childName || '—';
+
+      document.getElementById('birthDate').textContent =
+        formatDate(data.birthDate);
+
+      document.getElementById('desiredClass').textContent =
+        data.desiredClass || '—';
+
+      document.getElementById('desiredEntry').textContent =
+        data.desiredEntry || '—';
+
+      document.getElementById('guardianName').textContent =
+        data.guardianName || '—';
+
+      document.getElementById('guardianRelation').textContent =
+        data.guardianRelation || '—';
+
+      document.getElementById('phone').textContent =
+        data.phone || '—';
+
+      document.getElementById('managementId').textContent =
+        data.managementId || '—';
+
+
+      document.getElementById('application').style.display =
+        'block';
+
+    }
+
+
+    function formatDate(value) {
+
+      if (!value) {
+        return '—';
+      }
+
+      const parts =
+        value.split('-');
+
+      if (parts.length !== 3) {
+        return value;
+      }
+
+      return (
+        Number(parts[0]) +
+        '年' +
+        Number(parts[1]) +
+        '月' +
+        Number(parts[2]) +
+        '日'
+      );
+
+    }
+
 
     initializeLiff();
   </script>
