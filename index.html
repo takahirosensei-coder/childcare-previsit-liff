@@ -606,8 +606,17 @@ input[type="time"]:focus {
     </select>
   </div>
 
-</div>
 
+        <div id="applicantReturnDateArea" class="input-row conditional">
+  <label class="input-label" for="applicantReturnDate">
+    復職予定日
+  </label>
+
+  <input
+    type="date"
+    id="applicantReturnDate"
+  >
+</div>
       
 
       </div>
@@ -822,6 +831,29 @@ document.querySelectorAll('input[name="allergy"]').forEach(function(input) {
     }
 
   });
+
+});
+    const applicantWorkStatus =
+  document.getElementById('applicantWorkStatus');
+
+const applicantReturnDateArea =
+  document.getElementById('applicantReturnDateArea');
+
+const applicantReturnDate =
+  document.getElementById('applicantReturnDate');
+
+applicantWorkStatus.addEventListener('change', function() {
+
+  if (this.value === '育休中') {
+
+    applicantReturnDateArea.style.display = 'block';
+
+  } else {
+
+    applicantReturnDateArea.style.display = 'none';
+    applicantReturnDate.value = '';
+
+  }
 
 });
     // ==================================================
