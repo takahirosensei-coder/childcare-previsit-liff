@@ -597,40 +597,7 @@ input[type="time"]:focus {
   >
 </div>
 
-        <div class="info-row">
-          <div class="info-label">希望クラス</div>
-          <div id="desiredClass" class="info-value"></div>
-        </div>
-
-        <div class="info-row">
-          <div class="info-label">入園希望時期</div>
-          <div id="desiredEntry" class="info-value"></div>
-        </div>
-
-        <div class="info-row">
-          <div class="info-label">保護者氏名</div>
-          <div id="guardianName" class="info-value"></div>
-        </div>
-
-        <div class="info-row">
-          <div class="info-label">続柄</div>
-          <div id="guardianRelation" class="info-value"></div>
-        </div>
-
-        <div class="info-row">
-          <div class="info-label">電話番号</div>
-          <div id="phone" class="info-value"></div>
-        </div>
-
-        <div class="info-row">
-          <div class="info-label">管理ID</div>
-          <div id="managementId" class="info-value"></div>
-        </div>
-
-        <div class="notice">
-          上記は見学申込時にご入力いただいた内容です。<br>
-          続いて、見学前に必要な情報をご入力いただきます。
-        </div>
+      
 
       </div>
 
@@ -743,20 +710,12 @@ input[type="time"]:focus {
 
     function showApplication(data) {
 
-      document.getElementById('nursery').textContent =
-        data.nursery || '—';
-
       document.getElementById('childName').textContent =
         data.childName || '—';
 
       document.getElementById('birthDate').textContent =
         formatDate(data.birthDate);
-
-      document.getElementById('desiredClass').textContent =
-        data.desiredClass || '—';
-
-      document.getElementById('desiredEntry').textContent =
-  data.desiredEntry || '—';
+      
       document.getElementById('nurseryDisplay').textContent =
   data.nursery || '—';
 
@@ -795,18 +754,6 @@ if (data.guardianRelation === '母') {
     data.guardianName || '';
 
 }
-
-      document.getElementById('guardianName').textContent =
-        data.guardianName || '—';
-
-      document.getElementById('guardianRelation').textContent =
-        data.guardianRelation || '—';
-
-      document.getElementById('phone').textContent =
-        data.phone || '—';
-
-      document.getElementById('managementId').textContent =
-        data.managementId || '—';
 
 
       document.getElementById('application').style.display =
