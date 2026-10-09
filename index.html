@@ -133,6 +133,26 @@
   display: flex;
   gap: 10px;
 }
+    /* 05 その他：選択肢をスマホで2列表示 */
+#section05 .choice-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+#section05 .choice-button {
+  min-width: 0;
+}
+
+#section05 .choice-button span {
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: normal;
+  word-break: keep-all;
+}
 
 .choice-button {
   flex: 1;
@@ -1196,7 +1216,7 @@ input[type="time"]:focus {
 <!-- ==================================================
      05 その他
 ================================================== -->
-<div class="section">
+<div class="section" id="section05">
 
   <div class="section-number">05</div>
   <h2 class="section-title">その他</h2>
