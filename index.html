@@ -617,6 +617,526 @@ input[type="time"]:focus {
     id="applicantReturnDate"
   >
 </div>
+
+  <div class="input-row">
+  <label class="input-label" for="applicantWorkPrefecture">
+    勤務地（都道府県）
+  </label>
+
+  <select id="applicantWorkPrefecture">
+    <option value="">選択してください</option>
+
+    <optgroup label="北海道">
+      <option value="北海道">北海道</option>
+    </optgroup>
+
+    <optgroup label="東北">
+      <option value="青森県">青森県</option>
+      <option value="岩手県">岩手県</option>
+      <option value="宮城県">宮城県</option>
+      <option value="秋田県">秋田県</option>
+      <option value="山形県">山形県</option>
+      <option value="福島県">福島県</option>
+    </optgroup>
+
+    <optgroup label="関東">
+      <option value="茨城県">茨城県</option>
+      <option value="栃木県">栃木県</option>
+      <option value="群馬県">群馬県</option>
+      <option value="埼玉県">埼玉県</option>
+      <option value="千葉県">千葉県</option>
+      <option value="東京都">東京都</option>
+      <option value="神奈川県">神奈川県</option>
+    </optgroup>
+
+    <optgroup label="中部">
+      <option value="新潟県">新潟県</option>
+      <option value="富山県">富山県</option>
+      <option value="石川県">石川県</option>
+      <option value="福井県">福井県</option>
+      <option value="山梨県">山梨県</option>
+      <option value="長野県">長野県</option>
+      <option value="岐阜県">岐阜県</option>
+      <option value="静岡県">静岡県</option>
+      <option value="愛知県">愛知県</option>
+    </optgroup>
+
+    <optgroup label="近畿">
+      <option value="三重県">三重県</option>
+      <option value="滋賀県">滋賀県</option>
+      <option value="京都府">京都府</option>
+      <option value="大阪府">大阪府</option>
+      <option value="兵庫県">兵庫県</option>
+      <option value="奈良県">奈良県</option>
+      <option value="和歌山県">和歌山県</option>
+    </optgroup>
+
+    <optgroup label="中国">
+      <option value="鳥取県">鳥取県</option>
+      <option value="島根県">島根県</option>
+      <option value="岡山県">岡山県</option>
+      <option value="広島県">広島県</option>
+      <option value="山口県">山口県</option>
+    </optgroup>
+
+    <optgroup label="四国">
+      <option value="徳島県">徳島県</option>
+      <option value="香川県">香川県</option>
+      <option value="愛媛県">愛媛県</option>
+      <option value="高知県">高知県</option>
+    </optgroup>
+
+    <optgroup label="九州・沖縄">
+      <option value="福岡県">福岡県</option>
+      <option value="佐賀県">佐賀県</option>
+      <option value="長崎県">長崎県</option>
+      <option value="熊本県">熊本県</option>
+      <option value="大分県">大分県</option>
+      <option value="宮崎県">宮崎県</option>
+      <option value="鹿児島県">鹿児島県</option>
+      <option value="沖縄県">沖縄県</option>
+    </optgroup>
+
+  </select>
+</div>
+
+<div class="input-row">
+  <label class="input-label">
+    勤務地（市区町村）
+  </label>
+
+  <select id="applicantWorkCitySelect" disabled>
+    <option value="">都道府県を先に選択してください</option>
+  </select>
+
+  <input
+    type="text"
+    id="applicantWorkCityInput"
+    placeholder="市区町村を入力してください"
+    style="display:none;"
+  >
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="applicantWorkTown">
+    勤務地（町名）
+  </label>
+
+  <input
+    type="text"
+    id="applicantWorkTown"
+    placeholder="例：梅島"
+  >
+</div>
+  <div class="input-row">
+  <div class="input-label">勤務曜日</div>
+
+  <div class="weekday-group">
+
+    <label class="weekday-button">
+      <input type="checkbox" name="applicantWorkWeekdays" value="月">
+      <span>月</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="applicantWorkWeekdays" value="火">
+      <span>火</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="applicantWorkWeekdays" value="水">
+      <span>水</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="applicantWorkWeekdays" value="木">
+      <span>木</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="applicantWorkWeekdays" value="金">
+      <span>金</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="applicantWorkWeekdays" value="土">
+      <span>土</span>
+    </label>
+
+  </div>
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="applicantWorkStartTime">
+    勤務開始時間
+  </label>
+
+  <input
+    type="time"
+    id="applicantWorkStartTime"
+    step="300"
+  >
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="applicantWorkEndTime">
+    勤務終了時間
+  </label>
+
+  <input
+    type="time"
+    id="applicantWorkEndTime"
+    step="300"
+  >
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="applicantCommuteMethod">
+    勤務先までの通勤手段
+  </label>
+
+  <select id="applicantCommuteMethod">
+    <option value="">選択してください</option>
+    <option value="徒歩">徒歩</option>
+    <option value="自転車">自転車</option>
+    <option value="自動車">自動車</option>
+    <option value="電車">電車</option>
+    <option value="バス">バス</option>
+    <option value="その他">その他</option>
+  </select>
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="applicantCommuteTime">
+    勤務先までの通勤時間
+  </label>
+
+  <select id="applicantCommuteTime">
+    <option value="">選択してください</option>
+    <option value="15分未満">15分未満</option>
+    <option value="15～30分">15～30分</option>
+    <option value="30～45分">30～45分</option>
+    <option value="45～60分">45～60分</option>
+    <option value="60分以上">60分以上</option>
+  </select>
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="applicantNurseryMethod">
+    自宅から園までの通園手段
+  </label>
+
+  <select id="applicantNurseryMethod">
+    <option value="">選択してください</option>
+    <option value="徒歩">徒歩</option>
+    <option value="自転車">自転車</option>
+    <option value="自動車">自動車</option>
+    <option value="電車">電車</option>
+    <option value="バス">バス</option>
+    <option value="その他">その他</option>
+  </select>
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="applicantNurseryTime">
+    自宅から園までの通園時間
+  </label>
+
+  <select id="applicantNurseryTime">
+    <option value="">選択してください</option>
+    <option value="5分未満">5分未満</option>
+    <option value="5～10分">5～10分</option>
+    <option value="10～15分">10～15分</option>
+    <option value="15～30分">15～30分</option>
+    <option value="30分以上">30分以上</option>
+  </select>
+</div>
+  <div id="otherParentSection">
+
+  <div class="subsection-title" id="otherParentTitle">
+    もう一方の保護者さまについて
+  </div>
+
+  <div class="input-row">
+    <label
+      class="input-label"
+      for="otherParentName"
+      id="otherParentNameLabel"
+    >
+      保護者氏名
+    </label>
+
+    <input
+      type="text"
+      id="otherParentName"
+      placeholder="お名前を入力してください"
+    >
+  </div>
+
+  <div class="input-row">
+    <label class="input-label" for="otherParentWorkStatus">
+      就労状況
+    </label>
+
+    <select id="otherParentWorkStatus">
+      <option value="">選択してください</option>
+      <option value="就労中">就労中</option>
+      <option value="育休中">育休中</option>
+      <option value="求職中">求職中</option>
+      <option value="就労予定">就労予定</option>
+      <option value="就労していない">就労していない</option>
+      <option value="その他">その他</option>
+    </select>
+  </div>
+
+  <div
+    id="otherParentReturnDateArea"
+    class="input-row conditional"
+  >
+    <label
+      class="input-label"
+      for="otherParentReturnDate"
+    >
+      復職予定日
+    </label>
+
+    <input
+      type="date"
+      id="otherParentReturnDate"
+    >
+  </div>
+<div class="input-row">
+  <label class="input-label" for="otherParentWorkPrefecture">
+    勤務地（都道府県）
+  </label>
+
+  <select id="otherParentWorkPrefecture">
+    <option value="">選択してください</option>
+
+    <optgroup label="北海道">
+      <option value="北海道">北海道</option>
+    </optgroup>
+
+    <optgroup label="東北">
+      <option value="青森県">青森県</option>
+      <option value="岩手県">岩手県</option>
+      <option value="宮城県">宮城県</option>
+      <option value="秋田県">秋田県</option>
+      <option value="山形県">山形県</option>
+      <option value="福島県">福島県</option>
+    </optgroup>
+
+    <optgroup label="関東">
+      <option value="茨城県">茨城県</option>
+      <option value="栃木県">栃木県</option>
+      <option value="群馬県">群馬県</option>
+      <option value="埼玉県">埼玉県</option>
+      <option value="千葉県">千葉県</option>
+      <option value="東京都">東京都</option>
+      <option value="神奈川県">神奈川県</option>
+    </optgroup>
+
+    <optgroup label="中部">
+      <option value="新潟県">新潟県</option>
+      <option value="富山県">富山県</option>
+      <option value="石川県">石川県</option>
+      <option value="福井県">福井県</option>
+      <option value="山梨県">山梨県</option>
+      <option value="長野県">長野県</option>
+      <option value="岐阜県">岐阜県</option>
+      <option value="静岡県">静岡県</option>
+      <option value="愛知県">愛知県</option>
+    </optgroup>
+
+    <optgroup label="近畿">
+      <option value="三重県">三重県</option>
+      <option value="滋賀県">滋賀県</option>
+      <option value="京都府">京都府</option>
+      <option value="大阪府">大阪府</option>
+      <option value="兵庫県">兵庫県</option>
+      <option value="奈良県">奈良県</option>
+      <option value="和歌山県">和歌山県</option>
+    </optgroup>
+
+    <optgroup label="中国">
+      <option value="鳥取県">鳥取県</option>
+      <option value="島根県">島根県</option>
+      <option value="岡山県">岡山県</option>
+      <option value="広島県">広島県</option>
+      <option value="山口県">山口県</option>
+    </optgroup>
+
+    <optgroup label="四国">
+      <option value="徳島県">徳島県</option>
+      <option value="香川県">香川県</option>
+      <option value="愛媛県">愛媛県</option>
+      <option value="高知県">高知県</option>
+    </optgroup>
+
+    <optgroup label="九州・沖縄">
+      <option value="福岡県">福岡県</option>
+      <option value="佐賀県">佐賀県</option>
+      <option value="長崎県">長崎県</option>
+      <option value="熊本県">熊本県</option>
+      <option value="大分県">大分県</option>
+      <option value="宮崎県">宮崎県</option>
+      <option value="鹿児島県">鹿児島県</option>
+      <option value="沖縄県">沖縄県</option>
+    </optgroup>
+  </select>
+</div>
+
+<div class="input-row">
+  <label class="input-label">
+    勤務地（市区町村）
+  </label>
+
+  <select id="otherParentWorkCitySelect" disabled>
+    <option value="">都道府県を先に選択してください</option>
+  </select>
+
+  <input
+    type="text"
+    id="otherParentWorkCityInput"
+    placeholder="市区町村を入力してください"
+    style="display:none;"
+  >
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="otherParentWorkTown">
+    勤務地（町名）
+  </label>
+
+  <input
+    type="text"
+    id="otherParentWorkTown"
+    placeholder="例：梅島"
+  >
+</div>
+
+<div class="input-row">
+  <div class="input-label">勤務曜日</div>
+
+  <div class="weekday-group">
+    <label class="weekday-button">
+      <input type="checkbox" name="otherParentWorkWeekdays" value="月">
+      <span>月</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="otherParentWorkWeekdays" value="火">
+      <span>火</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="otherParentWorkWeekdays" value="水">
+      <span>水</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="otherParentWorkWeekdays" value="木">
+      <span>木</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="otherParentWorkWeekdays" value="金">
+      <span>金</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="otherParentWorkWeekdays" value="土">
+      <span>土</span>
+    </label>
+  </div>
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="otherParentWorkStartTime">
+    勤務開始時間
+  </label>
+
+  <input
+    type="time"
+    id="otherParentWorkStartTime"
+    step="300"
+  >
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="otherParentWorkEndTime">
+    勤務終了時間
+  </label>
+
+  <input
+    type="time"
+    id="otherParentWorkEndTime"
+    step="300"
+  >
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="otherParentCommuteMethod">
+    勤務先までの通勤手段
+  </label>
+
+  <select id="otherParentCommuteMethod">
+    <option value="">選択してください</option>
+    <option value="徒歩">徒歩</option>
+    <option value="自転車">自転車</option>
+    <option value="自動車">自動車</option>
+    <option value="電車">電車</option>
+    <option value="バス">バス</option>
+    <option value="その他">その他</option>
+  </select>
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="otherParentCommuteTime">
+    勤務先までの通勤時間
+  </label>
+
+  <select id="otherParentCommuteTime">
+    <option value="">選択してください</option>
+    <option value="15分未満">15分未満</option>
+    <option value="15～30分">15～30分</option>
+    <option value="30～45分">30～45分</option>
+    <option value="45～60分">45～60分</option>
+    <option value="60分以上">60分以上</option>
+  </select>
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="otherParentNurseryMethod">
+    自宅から園までの通園手段
+  </label>
+
+  <select id="otherParentNurseryMethod">
+    <option value="">選択してください</option>
+    <option value="徒歩">徒歩</option>
+    <option value="自転車">自転車</option>
+    <option value="自動車">自動車</option>
+    <option value="電車">電車</option>
+    <option value="バス">バス</option>
+    <option value="その他">その他</option>
+  </select>
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="otherParentNurseryTime">
+    自宅から園までの通園時間
+  </label>
+
+  <select id="otherParentNurseryTime">
+    <option value="">選択してください</option>
+    <option value="5分未満">5分未満</option>
+    <option value="5～10分">5～10分</option>
+    <option value="10～15分">10～15分</option>
+    <option value="15～30分">15～30分</option>
+    <option value="30分以上">30分以上</option>
+  </select>
+</div>
+</div>
       
 
       </div>
@@ -775,6 +1295,46 @@ if (data.guardianRelation === '父') {
     '保護者さまの就労情報';
 
 }
+      const otherParentTitle =
+  document.getElementById('otherParentTitle');
+
+const otherParentNameLabel =
+  document.getElementById('otherParentNameLabel');
+
+const otherParentName =
+  document.getElementById('otherParentName');
+
+if (data.guardianRelation === '父') {
+
+  otherParentTitle.textContent =
+    'お母さまについて';
+
+  otherParentNameLabel.textContent =
+    'お母さま氏名';
+
+  otherParentName.placeholder =
+    'お母さまのお名前';
+
+} else if (data.guardianRelation === '母') {
+
+  otherParentTitle.textContent =
+    'お父さまについて';
+
+  otherParentNameLabel.textContent =
+    'お父さま氏名';
+
+  otherParentName.placeholder =
+    'お父さまのお名前';
+
+} else {
+
+  otherParentTitle.textContent =
+    'もう一方の保護者さまについて';
+
+  otherParentNameLabel.textContent =
+    '保護者氏名';
+
+}
 
 
 
@@ -856,6 +1416,35 @@ applicantWorkStatus.addEventListener('change', function() {
   }
 
 });
+
+    // ==================================================
+// もう一方の保護者：育休中 → 復職予定日
+// ==================================================
+
+const otherParentWorkStatus =
+  document.getElementById('otherParentWorkStatus');
+
+const otherParentReturnDateArea =
+  document.getElementById('otherParentReturnDateArea');
+
+const otherParentReturnDate =
+  document.getElementById('otherParentReturnDate');
+
+otherParentWorkStatus.addEventListener('change', function() {
+
+  if (this.value === '育休中') {
+
+    otherParentReturnDateArea.style.display = 'block';
+
+  } else {
+
+    otherParentReturnDateArea.style.display = 'none';
+    otherParentReturnDate.value = '';
+
+  }
+
+});
+    
     // ==================================================
 // 住所：都道府県 → 市区町村
 // 東京・埼玉・千葉のみ市区町村を選択式にする
@@ -958,6 +1547,7 @@ prefectureSelect.addEventListener('change', function() {
 
     });
 
+    
   }
 
   // 都道府県未選択
@@ -984,6 +1574,127 @@ prefectureSelect.addEventListener('change', function() {
   }
 
 });
+    
+// ===============================================
+// 申込者の勤務地：都道府県 → 市区町村
+// ===============================================
+
+const applicantWorkPrefecture =
+  document.getElementById('applicantWorkPrefecture');
+
+const applicantWorkCitySelect =
+  document.getElementById('applicantWorkCitySelect');
+
+const applicantWorkCityInput =
+  document.getElementById('applicantWorkCityInput');
+
+applicantWorkPrefecture.addEventListener('change', function() {
+
+  const prefecture = this.value;
+
+  applicantWorkCitySelect.innerHTML =
+    '<option value="">選択してください</option>';
+
+  applicantWorkCityInput.value = '';
+
+  if (cityData[prefecture]) {
+
+    applicantWorkCitySelect.style.display = 'block';
+    applicantWorkCitySelect.disabled = false;
+    applicantWorkCityInput.style.display = 'none';
+
+    cityData[prefecture].forEach(function(city) {
+
+      const option =
+        document.createElement('option');
+
+      option.value = city;
+      option.textContent = city;
+
+      applicantWorkCitySelect.appendChild(option);
+
+    });
+
+  } else if (!prefecture) {
+
+    applicantWorkCitySelect.style.display = 'block';
+    applicantWorkCitySelect.disabled = true;
+
+    applicantWorkCitySelect.innerHTML =
+      '<option value="">都道府県を先に選択してください</option>';
+
+    applicantWorkCityInput.style.display = 'none';
+
+  } else {
+
+    applicantWorkCitySelect.style.display = 'none';
+    applicantWorkCitySelect.disabled = true;
+    applicantWorkCityInput.style.display = 'block';
+
+  }
+
+});
+
+    // ==================================================
+// もう一方の保護者の勤務地：都道府県 → 市区町村
+// ==================================================
+
+const otherParentWorkPrefecture =
+  document.getElementById('otherParentWorkPrefecture');
+
+const otherParentWorkCitySelect =
+  document.getElementById('otherParentWorkCitySelect');
+
+const otherParentWorkCityInput =
+  document.getElementById('otherParentWorkCityInput');
+
+otherParentWorkPrefecture.addEventListener('change', function() {
+
+  const prefecture = this.value;
+
+  otherParentWorkCitySelect.innerHTML =
+    '<option value="">選択してください</option>';
+
+  otherParentWorkCityInput.value = '';
+
+  if (cityData[prefecture]) {
+
+    otherParentWorkCitySelect.style.display = 'block';
+    otherParentWorkCitySelect.disabled = false;
+    otherParentWorkCityInput.style.display = 'none';
+
+    cityData[prefecture].forEach(function(city) {
+
+      const option =
+        document.createElement('option');
+
+      option.value = city;
+      option.textContent = city;
+
+      otherParentWorkCitySelect.appendChild(option);
+
+    });
+
+  } else if (!prefecture) {
+
+    otherParentWorkCitySelect.style.display = 'block';
+    otherParentWorkCitySelect.disabled = true;
+
+    otherParentWorkCitySelect.innerHTML =
+      '<option value="">都道府県を先に選択してください</option>';
+
+    otherParentWorkCityInput.style.display = 'none';
+
+  } else {
+
+    otherParentWorkCitySelect.style.display = 'none';
+    otherParentWorkCitySelect.disabled = true;
+    otherParentWorkCityInput.style.display = 'block';
+
+  }
+
+});
+    
     initializeLiff();
   </script>
 
