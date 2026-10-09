@@ -3076,6 +3076,8 @@ ${
   <div class="info-value">${nurseryMessageValue || 'なし'}</div>
 </div>
 `;
+    document.getElementById('application').style.display = 'none';
+document.getElementById('section05').style.display = 'none';
     document
       .getElementById('confirmScreen')
       .style.display = 'block';
@@ -3095,15 +3097,23 @@ document
   .addEventListener('click', function() {
 
     document
-      .getElementById('confirmScreen')
-      .style.display = 'none';
+  .getElementById('confirmScreen')
+  .style.display = 'none';
 
-    document
-      .getElementById('section05')
-      .scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+document
+  .getElementById('application')
+  .style.display = 'block';
+
+document
+  .getElementById('section05')
+  .style.display = 'block';
+
+document
+  .getElementById('section05')
+  .scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
 
   });
     initializeLiff();
