@@ -524,6 +524,55 @@ select:disabled {
 
   color: #9aa19f;
 }
+    /* ==================================================
+   確認ボタン
+================================================== */
+
+.submit-area {
+  margin-top: 36px;
+  padding-top: 8px;
+}
+
+.confirm-button {
+  width: 100%;
+  padding: 17px 20px;
+  border: none;
+  border-radius: 12px;
+  background: #148b78;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(20, 139, 120, 0.20);
+}
+
+.confirm-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 12px rgba(20, 139, 120, 0.18);
+}
+    /* ==================================================
+   確認画面
+================================================== */
+
+.confirm-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.back-button {
+  width: 100%;
+  padding: 16px 20px;
+  border: 1px solid #148b78;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #148b78;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
   </style>
 </head>
 
@@ -1624,7 +1673,46 @@ select:disabled {
     ></textarea>
 
   </div>
+<!-- 入力内容確認ボタン -->
+<div class="submit-area">
+  <button
+    type="button"
+    id="confirmButton"
+    class="confirm-button"
+  >
+    入力内容を確認する
+  </button>
+</div>
+  <!-- 確認画面 -->
+<div id="confirmScreen" style="display:none;">
 
+  <div class="section-title">
+    入力内容の確認
+  </div>
+
+  <div id="confirmContent"></div>
+
+  <div class="confirm-actions">
+
+    <button
+      type="button"
+      id="backButton"
+      class="back-button"
+    >
+      入力内容を修正する
+    </button>
+
+    <button
+      type="button"
+      id="submitButton"
+      class="confirm-button"
+    >
+      この内容で送信する
+    </button>
+
+  </div>
+
+</div>
 </div>
       </div>
 
@@ -2471,6 +2559,56 @@ function showOtherNurseries(currentNursery) {
   });
 
 }
+    // ==================================================
+// 確認画面
+// ==================================================
+
+const confirmButton =
+  document.getElementById('confirmButton');
+
+const confirmScreen =
+  document.getElementById('confirmScreen');
+
+const backButton =
+  document.getElementById('backButton');
+
+const application =
+  document.getElementById('application');
+
+const section05 =
+  document.getElementById('section05');
+
+
+// 「入力内容を確認する」
+confirmButton.addEventListener('click', function() {
+
+  application.style.display = 'none';
+  section05.style.display = 'none';
+
+  confirmScreen.style.display = 'block';
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
+});
+
+
+// 「入力内容を修正する」
+backButton.addEventListener('click', function() {
+
+  confirmScreen.style.display = 'none';
+
+  application.style.display = 'block';
+  section05.style.display = 'block';
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
+});
     initializeLiff();
   </script>
 
