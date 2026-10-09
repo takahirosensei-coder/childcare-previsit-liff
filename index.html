@@ -1193,7 +1193,181 @@ input[type="time"]:focus {
 
     </div>
   </div>
+<!-- ==================================================
+     05 その他
+================================================== -->
+<div class="section">
 
+  <div class="section-number">05</div>
+  <h2 class="section-title">その他</h2>
+
+
+  <!-- 当園を知ったきっかけ -->
+  <div class="input-row">
+
+    <div class="input-label">
+      当園を何で知りましたか？
+    </div>
+
+    <div class="choice-group">
+
+      <label class="choice-button">
+        <input
+          type="checkbox"
+          name="discoverySource"
+          value="Google検索・Googleマップ"
+        >
+        <span>Google検索・Googleマップ</span>
+      </label>
+
+      <label class="choice-button">
+        <input
+          type="checkbox"
+          name="discoverySource"
+          value="Instagram"
+        >
+        <span>Instagram</span>
+      </label>
+
+      <label class="choice-button">
+        <input
+          type="checkbox"
+          name="discoverySource"
+          value="ホームページ"
+        >
+        <span>ホームページ</span>
+      </label>
+
+      <label class="choice-button">
+        <input
+          type="checkbox"
+          name="discoverySource"
+          value="LINE"
+        >
+        <span>LINE</span>
+      </label>
+
+      <label class="choice-button">
+        <input
+          type="checkbox"
+          name="discoverySource"
+          value="知人・友人からの紹介"
+        >
+        <span>知人・友人からの紹介</span>
+      </label>
+
+      <label class="choice-button">
+        <input
+          type="checkbox"
+          name="discoverySource"
+          value="近所・園の前を通って"
+        >
+        <span>近所・園の前を通って</span>
+      </label>
+
+      <label class="choice-button">
+        <input
+          type="checkbox"
+          name="discoverySource"
+          value="自治体などの案内"
+        >
+        <span>自治体などの案内</span>
+      </label>
+
+      <label class="choice-button">
+        <input
+          type="checkbox"
+          name="discoverySource"
+          value="その他"
+        >
+        <span>その他</span>
+      </label>
+
+    </div>
+
+  </div>
+
+
+  <!-- 紹介者名 -->
+  <div
+    id="referrerNameArea"
+    class="input-row conditional"
+  >
+
+    <label
+      class="input-label"
+      for="referrerName"
+    >
+      ご紹介者さまのお名前
+    </label>
+
+    <input
+      type="text"
+      id="referrerName"
+      placeholder="お名前をご入力ください"
+    >
+
+  </div>
+
+
+  <!-- その他のきっかけ -->
+  <div
+    id="discoveryOtherArea"
+    class="input-row conditional"
+  >
+
+    <label
+      class="input-label"
+      for="discoveryOther"
+    >
+      その他のきっかけ
+    </label>
+
+    <textarea
+      id="discoveryOther"
+      rows="3"
+      placeholder="どのように当園を知ったかご記入ください"
+    ></textarea>
+
+  </div>
+
+
+  <!-- 他に興味のある園 -->
+  <div class="input-row">
+
+    <div class="input-label">
+      他に興味のある当社の保育園
+    </div>
+
+    <div
+      id="otherNurseryChoices"
+      class="choice-group"
+    >
+      <!-- JavaScriptで見学先以外の3園を表示 -->
+    </div>
+
+  </div>
+
+
+  <!-- 園への連絡事項 -->
+  <div class="input-row">
+
+    <label
+      class="input-label"
+      for="nurseryMessage"
+    >
+      園への連絡事項
+    </label>
+
+    <textarea
+      id="nurseryMessage"
+      rows="4"
+      placeholder="事前に伝えておきたいことなどがあればご記入ください"
+    ></textarea>
+
+  </div>
+
+</div>
 
   <script>
     const LIFF_ID = '2011888851-44NDMiTg';
@@ -1314,6 +1488,7 @@ document.getElementById('desiredClassDisplay').textContent =
 
 document.getElementById('desiredEntryDisplay').textContent =
   data.desiredEntry || '—';
+      showOtherNurseries(data.nursery);
 
       // 04 保護者さま情報
 document.getElementById('guardianNameDisplay').textContent =
@@ -1852,7 +2027,176 @@ otherParentWorkPrefecture.addEventListener('change', function() {
   }
 
 });
-    
+    // ==================================================
+// 05 その他
+// ==================================================
+
+const discoverySourceInputs =
+  document.querySelectorAll('input[name="discoverySource"]');
+
+const referrerNameArea =
+  document.getElementById('referrerNameArea');
+
+const referrerName =
+  document.getElementById('referrerName');
+
+const discoveryOtherArea =
+  document.getElementById('discoveryOtherArea');
+
+const discoveryOther =
+  document.getElementById('discoveryOther');
+
+
+// 「知人・友人からの紹介」「その他」の条件表示
+discoverySourceInputs.forEach(function(input) {
+
+  input.addEventListener('change', function() {
+
+    const selectedValues =
+      Array.from(discoverySourceInputs)
+        .filter(function(item) {
+          return item.checked;
+        })
+        .map(function(item) {
+          return item.value;
+        });
+
+
+    // 紹介者名
+    if (
+      selectedValues.includes('知人・友人からの紹介')
+    ) {
+
+      referrerNameArea.style.display = 'block';
+
+    } else {
+
+      referrerNameArea.style.display = 'none';
+      referrerName.value = '';
+
+    }
+
+
+    // その他のきっかけ
+    if (
+      selectedValues.includes('その他')
+    ) {
+
+      discoveryOtherArea.style.display = 'block';
+
+    } else {
+
+      discoveryOtherArea.style.display = 'none';
+      discoveryOther.value = '';
+
+    }
+
+  });
+
+});
+
+
+// ==================================================
+// 見学先以外の3園を表示
+// ==================================================
+
+function showOtherNurseries(currentNursery) {
+
+  const nurseryList = [
+    'トータス保育園 南花畑園',
+    'トータス保育園 保木間園',
+    'トータス保育園 梅島園',
+    'ちびっこランド 六町園'
+  ];
+
+  const container =
+    document.getElementById('otherNurseryChoices');
+
+  container.innerHTML = '';
+
+
+  nurseryList.forEach(function(nursery) {
+
+    if (nursery === currentNursery) {
+      return;
+    }
+
+    const label =
+      document.createElement('label');
+
+    label.className =
+      'choice-button';
+
+    label.innerHTML =
+      '<input type="checkbox" ' +
+      'name="otherNurseries" ' +
+      'value="' + nursery + '">' +
+      '<span>' + nursery + '</span>';
+
+    container.appendChild(label);
+
+  });
+
+
+  // 特になし
+  const noneLabel =
+    document.createElement('label');
+
+  noneLabel.className =
+    'choice-button';
+
+  noneLabel.innerHTML =
+    '<input type="checkbox" ' +
+    'name="otherNurseries" ' +
+    'value="特になし" ' +
+    'id="otherNurseryNone">' +
+    '<span>特になし</span>';
+
+  container.appendChild(noneLabel);
+
+
+  // 「特になし」と園名は同時選択させない
+  const choices =
+    container.querySelectorAll(
+      'input[name="otherNurseries"]'
+    );
+
+  choices.forEach(function(input) {
+
+    input.addEventListener('change', function() {
+
+      if (
+        this.value === '特になし' &&
+        this.checked
+      ) {
+
+        choices.forEach(function(item) {
+
+          if (item.value !== '特になし') {
+            item.checked = false;
+          }
+
+        });
+
+      } else if (
+        this.value !== '特になし' &&
+        this.checked
+      ) {
+
+        const none =
+          document.getElementById(
+            'otherNurseryNone'
+          );
+
+        none.checked = false;
+
+      }
+
+    });
+
+  });
+
+}
     initializeLiff();
   </script>
 
