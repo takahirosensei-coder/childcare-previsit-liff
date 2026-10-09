@@ -2595,8 +2595,9 @@ const applicantWorkPrefectureValue =
   document.getElementById('applicantWorkPrefecture')?.value || '';
 
 const applicantWorkCityValue =
-  document.getElementById('applicantWorkCity')?.value || '';
-
+  document.getElementById('applicantWorkCitySelect').style.display !== 'none'
+    ? document.getElementById('applicantWorkCitySelect').value
+    : document.getElementById('applicantWorkCityInput').value;
 const applicantWorkTownValue =
   document.getElementById('applicantWorkTown')?.value || '';
 
@@ -2646,7 +2647,9 @@ const otherParentWorkPrefectureValue =
   document.getElementById('otherParentWorkPrefecture')?.value || '';
 
 const otherParentWorkCityValue =
-  document.getElementById('otherParentWorkCity')?.value || '';
+  document.getElementById('otherParentWorkCitySelect').style.display !== 'none'
+    ? document.getElementById('otherParentWorkCitySelect').value
+    : document.getElementById('otherParentWorkCityInput').value;
 
 const otherParentWorkTownValue =
   document.getElementById('otherParentWorkTown')?.value || '';
@@ -2822,21 +2825,21 @@ confirmContent.innerHTML = `
 <div class="info-row">
   <div class="info-label">保護者氏名</div>
   <div class="info-value">
-    ${document.getElementById('guardianName').textContent}
+    ${document.getElementById('guardianNameDisplay').textContent}
   </div>
 </div>
 
 <div class="info-row">
   <div class="info-label">続柄</div>
   <div class="info-value">
-    ${document.getElementById('guardianRelation').textContent}
+    ${document.getElementById('guardianRelationDisplay').textContent}
   </div>
 </div>
 
 <div class="info-row">
   <div class="info-label">電話番号</div>
   <div class="info-value">
-    ${document.getElementById('phone').textContent}
+    ${document.getElementById('phoneDisplay').textContent}
   </div>
 </div>
 
