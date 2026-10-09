@@ -296,77 +296,125 @@ input[type="time"]:focus {
   font-size: 15px;
   font-weight: 600;
 }
-    /* ==================================================
+  /* ==================================================
    デザイン調整
-   見やすさ＋上品なグリーン
+   ミントグリーン × ホワイト
 ================================================== */
 
+/* 全体背景 */
 body {
-  background: #f3f1eb;
-  color: #2f332f;
+  background: #d9f0ed;
+  color: #252d2c;
 }
 
+
+/* メインカード */
 .card {
   background: #ffffff;
-  border: 1px solid #e4e1d9;
-  border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(45, 55, 45, 0.08);
+
+  border: none;
+  border-radius: 26px;
+
+  box-shadow:
+    0 18px 45px rgba(35, 105, 91, 0.15);
 }
 
+
+/* 上部英字 */
 .eyebrow {
-  color: #60745f;
-  font-weight: 600;
+  color: #148b78;
+  font-weight: 700;
 }
 
+
+/* メインタイトル */
 h1 {
-  color: #273128;
-  font-weight: 700;
+  color: #148b78;
+
+  font-weight: 750;
   letter-spacing: 0.02em;
 }
 
+
+/* LINE接続表示 */
 .status {
-  color: #555c55;
+  color: #505a58;
 }
 
-/* セクション見出し */
+
+/* ==================================================
+   セクション見出し
+================================================== */
+
 .section-title {
-  margin-top: 36px;
-  margin-bottom: 18px;
-  padding: 12px 14px;
-  border-bottom: none;
-  border-left: 4px solid #637b62;
-  border-radius: 6px;
-  background: #f1f4ee;
-  color: #405340;
-  font-size: 15px;
-  font-weight: 700;
+  margin-top: 38px;
+  margin-bottom: 20px;
+
+  padding: 0 0 11px;
+
+  border: none;
+  border-bottom: 2px solid #cce7e2;
+
+  border-radius: 0;
+
+  background: transparent;
+
+  color: #148b78;
+
+  font-size: 16px;
+  font-weight: 750;
+
   letter-spacing: 0.04em;
 }
 
-/* 自動表示される申込情報 */
+
+/* ==================================================
+   申込時の情報
+================================================== */
+
 .info-row {
   padding: 14px 4px;
-  border-bottom: 1px solid #e5e3dc;
+
+  border-bottom: 1px solid #e6e9e8;
 }
+
 
 .info-label {
   margin-bottom: 6px;
-  color: #727872;
+
+  color: #747d7b;
+
   font-size: 12px;
   font-weight: 600;
 }
 
+
 .info-value {
-  color: #252a25;
+  color: #252d2c;
+
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 650;
 }
 
-/* 入力項目名 */
-.input-label {
-  color: #3d443d;
-  font-weight: 700;
+
+/* ==================================================
+   入力項目
+================================================== */
+
+.input-row {
+  padding: 19px 0;
+
+  border-bottom: none;
 }
+
+
+.input-label {
+  color: #252d2c;
+
+  font-size: 14px;
+  font-weight: 650;
+}
+
 
 /* 入力欄 */
 select,
@@ -374,58 +422,107 @@ input[type="text"],
 input[type="date"],
 input[type="time"],
 textarea {
-  border: 1px solid #c9cec6;
-  border-radius: 11px;
-  background: #ffffff;
-  color: #252a25;
-  box-shadow: 0 1px 3px rgba(40, 50, 40, 0.04);
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  background: #f2f4f3;
+
+  color: #252d2c;
+
+  box-shadow: none;
+
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
 }
 
-/* 入力中 */
+
+/* 入力欄を操作している時 */
 select:focus,
 input[type="text"]:focus,
 input[type="date"]:focus,
 input[type="time"]:focus,
 textarea:focus {
+
   outline: none;
-  border-color: #60785f;
-  box-shadow: 0 0 0 3px rgba(96, 120, 95, 0.12);
+
+  background: #ffffff;
+
+  border-color: #148b78;
+
+  box-shadow:
+    0 0 0 3px rgba(20, 139, 120, 0.13);
 }
 
-/* 選択ボタン */
+
+/* ==================================================
+   選択ボタン
+================================================== */
+
 .choice-button span,
 .weekday-button span {
-  border: 1px solid #c9cec6;
-  background: #ffffff;
-  color: #3b413b;
-  font-weight: 500;
+
+  border: 1px solid transparent;
+
+  background: #f2f4f3;
+
+  color: #35403e;
+
+  font-weight: 550;
+
+  transition: all 0.18s ease;
 }
 
-/* 選択された状態 */
+
+/* 選択済み */
 .choice-button input:checked + span,
 .weekday-button input:checked + span {
-  border-color: #5e785d;
-  background: #e8efe5;
-  color: #314b31;
+
+  border-color: #148b78;
+
+  background: #148b78;
+
+  color: #ffffff;
+
   font-weight: 700;
-  box-shadow: inset 0 0 0 1px #5e785d;
+
+  box-shadow:
+    0 6px 15px rgba(20, 139, 120, 0.20);
 }
 
-/* お父さま・お母さまなどの小見出し */
+
+/* ==================================================
+   お父さま・お母さま等の小見出し
+================================================== */
+
 .subsection-title {
+
   margin-top: 32px;
-  padding: 12px 14px;
-  border-left: 4px solid #7a8e78;
-  border-radius: 0 8px 8px 0;
-  background: #f4f5f1;
-  color: #394c39;
+
+  padding: 13px 15px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #e6f3f0;
+
+  color: #107c6b;
+
   font-weight: 700;
 }
 
-/* 各入力項目の区切り */
-.input-row {
-  padding: 20px 0;
-  border-bottom: 1px solid #ebe9e3;
+
+/* ==================================================
+   無効状態
+================================================== */
+
+select:disabled {
+
+  background: #eceeed;
+
+  color: #9aa19f;
 }
   </style>
 </head>
