@@ -3097,6 +3097,10 @@ document
 // 事前シート送信
 // ==================================================
 
+// ==================================================
+// 事前シート送信
+// ==================================================
+
 document
   .getElementById('submitButton')
   .addEventListener('click', async function() {
@@ -3105,7 +3109,10 @@ document
       document.getElementById('submitButton');
 
     if (!currentManagementId) {
-      alert('管理IDを確認できませんでした。もう一度画面を開き直してください。');
+      alert(
+        '管理IDを確認できませんでした。' +
+        'もう一度画面を開き直してください。'
+      );
       return;
     }
 
@@ -3114,22 +3121,325 @@ document
 
     try {
 
+      const profile =
+        await liff.getProfile();
+
+
+      // --------------------------
+      // 01 お子さまについて
+      // --------------------------
+
+      const gender =
+        document.querySelector(
+          'input[name="gender"]:checked'
+        )?.value || '';
+
+      const allergy =
+        document.querySelector(
+          'input[name="allergy"]:checked'
+        )?.value || '';
+
+      const allergyDetail =
+        document.getElementById('allergyDetail')?.value || '';
+
+
+      // --------------------------
+      // 02 ご住所について
+      // --------------------------
+
+      const prefecture =
+        document.getElementById('prefecture')?.value || '';
+
+      const city =
+        document.getElementById('citySelect').style.display !== 'none'
+          ? document.getElementById('citySelect').value
+          : document.getElementById('cityInput').value;
+
+      const addressDetail =
+        document.getElementById('addressDetail')?.value || '';
+
+
+      // --------------------------
+      // 03 ご希望の保育について
+      // --------------------------
+
+      const desiredWeekdays =
+        Array.from(
+          document.querySelectorAll(
+            'input[name="desiredWeekdays"]:checked'
+          )
+        ).map(function(item) {
+          return item.value;
+        }).join('・');
+
+      const desiredStartTime =
+        document.getElementById('desiredStartTime')?.value || '';
+
+      const desiredEndTime =
+        document.getElementById('desiredEndTime')?.value || '';
+
+      const considerationStatus =
+        document.getElementById('considerationStatus')?.value || '';
+
+
+      // --------------------------
+      // 04 申込者の就労情報
+      // --------------------------
+
+      const applicantWorkStatus =
+        document.getElementById('applicantWorkStatus')?.value || '';
+
+      const applicantReturnDate =
+        document.getElementById('applicantReturnDate')?.value || '';
+
+      const applicantWorkStartDate =
+        document.getElementById('applicantWorkStartDate')?.value || '';
+
+      const applicantWorkOther =
+        document.getElementById('applicantWorkOther')?.value || '';
+
+      const applicantWorkPrefecture =
+        document.getElementById('applicantWorkPrefecture')?.value || '';
+
+      const applicantWorkCity =
+        document.getElementById('applicantWorkCitySelect').style.display !== 'none'
+          ? document.getElementById('applicantWorkCitySelect').value
+          : document.getElementById('applicantWorkCityInput').value;
+
+      const applicantWorkTown =
+        document.getElementById('applicantWorkTown')?.value || '';
+
+      const applicantWorkWeekdays =
+        Array.from(
+          document.querySelectorAll(
+            'input[name="applicantWorkWeekdays"]:checked'
+          )
+        ).map(function(item) {
+          return item.value;
+        }).join('・');
+
+      const applicantWorkStartTime =
+        document.getElementById('applicantWorkStartTime')?.value || '';
+
+      const applicantWorkEndTime =
+        document.getElementById('applicantWorkEndTime')?.value || '';
+
+      const applicantCommuteMethod =
+        document.getElementById('applicantCommuteMethod')?.value || '';
+
+      const applicantCommuteTime =
+        document.getElementById('applicantCommuteTime')?.value || '';
+
+      const applicantNurseryMethod =
+        document.getElementById('applicantNurseryMethod')?.value || '';
+
+      const applicantNurseryTime =
+        document.getElementById('applicantNurseryTime')?.value || '';
+
+
+      // --------------------------
+      // 04 もう一方の保護者
+      // --------------------------
+
+      const otherParentName =
+        document.getElementById('otherParentName')?.value || '';
+
+      const otherParentWorkStatus =
+        document.getElementById('otherParentWorkStatus')?.value || '';
+
+      const otherParentReturnDate =
+        document.getElementById('otherParentReturnDate')?.value || '';
+
+      const otherParentWorkStartDate =
+        document.getElementById('otherParentWorkStartDate')?.value || '';
+
+      const otherParentWorkOther =
+        document.getElementById('otherParentWorkOther')?.value || '';
+
+      const otherParentWorkPrefecture =
+        document.getElementById('otherParentWorkPrefecture')?.value || '';
+
+      const otherParentWorkCity =
+        document.getElementById('otherParentWorkCitySelect').style.display !== 'none'
+          ? document.getElementById('otherParentWorkCitySelect').value
+          : document.getElementById('otherParentWorkCityInput').value;
+
+      const otherParentWorkTown =
+        document.getElementById('otherParentWorkTown')?.value || '';
+
+      const otherParentWorkWeekdays =
+        Array.from(
+          document.querySelectorAll(
+            'input[name="otherParentWorkWeekdays"]:checked'
+          )
+        ).map(function(item) {
+          return item.value;
+        }).join('・');
+
+      const otherParentWorkStartTime =
+        document.getElementById('otherParentWorkStartTime')?.value || '';
+
+      const otherParentWorkEndTime =
+        document.getElementById('otherParentWorkEndTime')?.value || '';
+
+      const otherParentCommuteMethod =
+        document.getElementById('otherParentCommuteMethod')?.value || '';
+
+      const otherParentCommuteTime =
+        document.getElementById('otherParentCommuteTime')?.value || '';
+
+      const otherParentNurseryMethod =
+        document.getElementById('otherParentNurseryMethod')?.value || '';
+
+      const otherParentNurseryTime =
+        document.getElementById('otherParentNurseryTime')?.value || '';
+
+
+      // --------------------------
+      // 05 その他
+      // --------------------------
+
+      const discoverySource =
+        Array.from(
+          document.querySelectorAll(
+            'input[name="discoverySource"]:checked'
+          )
+        ).map(function(item) {
+          return item.value;
+        }).join('・');
+
+      const referrerName =
+        document.getElementById('referrerName')?.value || '';
+
+      const discoveryOther =
+        document.getElementById('discoveryOther')?.value || '';
+
+      const otherNurseries =
+        Array.from(
+          document.querySelectorAll(
+            'input[name="otherNurseries"]:checked'
+          )
+        ).map(function(item) {
+          return item.value;
+        }).join('・');
+
+      const nurseryMessage =
+        document.getElementById('nurseryMessage')?.value || '';
+
+
+      // --------------------------
+      // GASへ送るデータ
+      // --------------------------
+
+      const data = {
+
+        action: 'savePreVisit',
+
+        managementId:
+          currentManagementId,
+
+        lineUserId:
+          profile.userId,
+
+        gender: gender,
+        allergy: allergy,
+        allergyDetail: allergyDetail,
+
+        prefecture: prefecture,
+        city: city,
+        addressDetail: addressDetail,
+
+        desiredWeekdays: desiredWeekdays,
+        desiredStartTime: desiredStartTime,
+        desiredEndTime: desiredEndTime,
+        considerationStatus: considerationStatus,
+
+        applicantWorkStatus: applicantWorkStatus,
+        applicantReturnDate: applicantReturnDate,
+        applicantWorkStartDate: applicantWorkStartDate,
+        applicantWorkOther: applicantWorkOther,
+        applicantWorkPrefecture: applicantWorkPrefecture,
+        applicantWorkCity: applicantWorkCity,
+        applicantWorkTown: applicantWorkTown,
+        applicantWorkWeekdays: applicantWorkWeekdays,
+        applicantWorkStartTime: applicantWorkStartTime,
+        applicantWorkEndTime: applicantWorkEndTime,
+        applicantCommuteMethod: applicantCommuteMethod,
+        applicantCommuteTime: applicantCommuteTime,
+        applicantNurseryMethod: applicantNurseryMethod,
+        applicantNurseryTime: applicantNurseryTime,
+
+        otherParentName: otherParentName,
+        otherParentWorkStatus: otherParentWorkStatus,
+        otherParentReturnDate: otherParentReturnDate,
+        otherParentWorkStartDate: otherParentWorkStartDate,
+        otherParentWorkOther: otherParentWorkOther,
+        otherParentWorkPrefecture: otherParentWorkPrefecture,
+        otherParentWorkCity: otherParentWorkCity,
+        otherParentWorkTown: otherParentWorkTown,
+        otherParentWorkWeekdays: otherParentWorkWeekdays,
+        otherParentWorkStartTime: otherParentWorkStartTime,
+        otherParentWorkEndTime: otherParentWorkEndTime,
+        otherParentCommuteMethod: otherParentCommuteMethod,
+        otherParentCommuteTime: otherParentCommuteTime,
+        otherParentNurseryMethod: otherParentNurseryMethod,
+        otherParentNurseryTime: otherParentNurseryTime,
+
+        discoverySource: discoverySource,
+        referrerName: referrerName,
+        discoveryOther: discoveryOther,
+        otherNurseries: otherNurseries,
+        nurseryMessage: nurseryMessage
+      };
+
+
+      // --------------------------
+      // GASへ送信
+      // --------------------------
+
+      const response =
+        await fetch(
+          API_URL,
+          {
+            method: 'POST',
+            body: JSON.stringify(data)
+          }
+        );
+
+
+      const result =
+        await response.json();
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.message ||
+          '事前シートの保存に失敗しました。'
+        );
+
+      }
+
+
       alert(
-        '送信準備OK\n管理ID：' +
-        currentManagementId
+        '事前シートを送信しました。\n' +
+        'ご回答ありがとうございます。'
       );
+
 
     } catch (error) {
 
       console.error(error);
 
       alert(
-        '送信処理でエラーが発生しました。'
+        '送信処理でエラーが発生しました。\n' +
+        (error.message || '')
       );
 
     } finally {
 
       submitButton.disabled = false;
+
       submitButton.textContent =
         'この内容で送信する';
 
