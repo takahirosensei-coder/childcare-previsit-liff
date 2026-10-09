@@ -1714,7 +1714,58 @@ select:disabled {
   </div>
 
 </div>
+<!-- 送信完了画面 -->
+<div id="completeScreen" style="display:none;">
 
+  <div class="section">
+
+    <div class="section-title">
+      送信が完了しました
+    </div>
+
+    <div style="
+      text-align:center;
+      padding:24px 8px 10px;
+      line-height:1.9;
+    ">
+
+      <div style="
+        font-size:42px;
+        margin-bottom:16px;
+      ">
+        ✓
+      </div>
+
+      <div style="
+        font-size:18px;
+        font-weight:700;
+        margin-bottom:12px;
+      ">
+        ご回答ありがとうございました
+      </div>
+
+      <div style="
+        font-size:14px;
+        color:#66706e;
+      ">
+        事前シートの内容を受け付けました。<br>
+        当日はお気をつけてお越しください。
+      </div>
+
+    </div>
+
+    <button
+      type="button"
+      id="closeLiffButton"
+      class="confirm-button"
+      style="margin-top:20px;"
+    >
+      LINEに戻る
+    </button>
+
+  </div>
+
+</div>
       </div>
 
   <script>
@@ -3449,10 +3500,14 @@ document
       }
 
 
-      alert(
-        '事前シートを送信しました。\n' +
-        'ご回答ありがとうございます。'
-      );
+      // 送信成功後、確認画面を消して完了画面を表示
+document.getElementById('confirmScreen').style.display = 'none';
+document.getElementById('completeScreen').style.display = 'block';
+
+window.scrollTo({
+  top: 0,
+  behavior: 'smooth'
+});
 
 
     } catch (error) {
@@ -3475,6 +3530,18 @@ document
 
   });
     initializeLiff();
+    // LINEに戻る
+document
+  .getElementById('closeLiffButton')
+  .addEventListener('click', function() {
+
+    if (liff.isInClient()) {
+      liff.closeWindow();
+    } else {
+      window.history.back();
+    }
+
+  });
   </script>
 
 </body>
