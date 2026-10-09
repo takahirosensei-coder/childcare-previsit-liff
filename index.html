@@ -554,6 +554,48 @@ input[type="time"]:focus {
     <option value="その他">その他</option>
   </select>
 </div>
+        <div class="section-title">
+  04　保護者さま情報
+</div>
+
+<div class="info-row">
+  <div class="info-label">保護者氏名</div>
+  <div id="guardianNameDisplay" class="info-value"></div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">続柄</div>
+  <div id="guardianRelationDisplay" class="info-value"></div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">電話番号</div>
+  <div id="phoneDisplay" class="info-value"></div>
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="motherName">
+    お母さま氏名
+  </label>
+
+  <input
+    type="text"
+    id="motherName"
+    placeholder="お母さまのお名前"
+  >
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="fatherName">
+    お父さま氏名
+  </label>
+
+  <input
+    type="text"
+    id="fatherName"
+    placeholder="お父さまのお名前"
+  >
+</div>
 
         <div class="info-row">
           <div class="info-label">希望クラス</div>
@@ -723,6 +765,36 @@ document.getElementById('desiredClassDisplay').textContent =
 
 document.getElementById('desiredEntryDisplay').textContent =
   data.desiredEntry || '—';
+
+      // 04 保護者さま情報
+document.getElementById('guardianNameDisplay').textContent =
+  data.guardianName || '—';
+
+document.getElementById('guardianRelationDisplay').textContent =
+  data.guardianRelation || '—';
+
+document.getElementById('phoneDisplay').textContent =
+  data.phone || '—';
+
+
+// 申込者が母・父の場合、氏名を自動入力
+const motherName =
+  document.getElementById('motherName');
+
+const fatherName =
+  document.getElementById('fatherName');
+
+if (data.guardianRelation === '母') {
+
+  motherName.value =
+    data.guardianName || '';
+
+} else if (data.guardianRelation === '父') {
+
+  fatherName.value =
+    data.guardianName || '';
+
+}
 
       document.getElementById('guardianName').textContent =
         data.guardianName || '—';
