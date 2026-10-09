@@ -2559,7 +2559,44 @@ function showOtherNurseries(currentNursery) {
   });
 
 }
-   
+   // ==================================================
+// 確認画面 基本動作
+// ==================================================
+
+document
+  .getElementById('confirmButton')
+  .addEventListener('click', function() {
+
+    document
+      .getElementById('confirmScreen')
+      .style.display = 'block';
+
+    document
+      .getElementById('confirmScreen')
+      .scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
+  });
+
+
+document
+  .getElementById('backButton')
+  .addEventListener('click', function() {
+
+    document
+      .getElementById('confirmScreen')
+      .style.display = 'none';
+
+    document
+      .getElementById('section05')
+      .scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
+  });
     initializeLiff();
   </script>
 
