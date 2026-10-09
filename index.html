@@ -183,6 +183,10 @@ textarea:focus {
 .conditional {
   display: none;
 }
+    #applicantWorkDetails,
+#otherParentWorkDetails {
+  display: none;
+}
     select,
 input[type="text"] {
   width: 100%;
@@ -559,7 +563,6 @@ input[type="time"]:focus {
   <select id="considerationStatus">
     <option value="">選択してください</option>
     <option value="第一希望">第一希望</option>
-    <option value="有力候補">有力候補</option>
     <option value="他園と比較検討中">他園と比較検討中</option>
     <option value="情報収集中">情報収集中</option>
     <option value="その他">その他</option>
@@ -617,7 +620,29 @@ input[type="time"]:focus {
     id="applicantReturnDate"
   >
 </div>
+  <div id="applicantWorkStartDateArea" class="input-row conditional">
+  <label class="input-label" for="applicantWorkStartDate">
+    就労開始予定日
+  </label>
 
+  <input
+    type="date"
+    id="applicantWorkStartDate"
+  >
+</div>
+
+<div id="applicantWorkOtherArea" class="input-row conditional">
+  <label class="input-label" for="applicantWorkOther">
+    就労状況の詳細
+  </label>
+
+  <textarea
+    id="applicantWorkOther"
+    rows="3"
+    placeholder="現在の状況をご記入ください"
+  ></textarea>
+</div>
+<div id="applicantWorkDetails">
   <div class="input-row">
   <label class="input-label" for="applicantWorkPrefecture">
     勤務地（都道府県）
@@ -830,7 +855,7 @@ input[type="time"]:focus {
     <option value="">選択してください</option>
     <option value="徒歩">徒歩</option>
     <option value="自転車">自転車</option>
-    <option value="自動車">自動車</option>
+    <option value="車">車</option>
     <option value="電車">電車</option>
     <option value="バス">バス</option>
     <option value="その他">その他</option>
@@ -851,6 +876,7 @@ input[type="time"]:focus {
     <option value="30分以上">30分以上</option>
   </select>
 </div>
+  </div>
   <div id="otherParentSection">
 
   <div class="subsection-title" id="otherParentTitle">
@@ -905,6 +931,29 @@ input[type="time"]:focus {
       id="otherParentReturnDate"
     >
   </div>
+    <div id="otherParentWorkStartDateArea" class="input-row conditional">
+  <label class="input-label" for="otherParentWorkStartDate">
+    就労開始予定日
+  </label>
+
+  <input
+    type="date"
+    id="otherParentWorkStartDate"
+  >
+</div>
+
+<div id="otherParentWorkOtherArea" class="input-row conditional">
+  <label class="input-label" for="otherParentWorkOther">
+    就労状況の詳細
+  </label>
+
+  <textarea
+    id="otherParentWorkOther"
+    rows="3"
+    placeholder="現在の状況をご記入ください"
+  ></textarea>
+</div>
+    <div id="otherParentWorkDetails">
 <div class="input-row">
   <label class="input-label" for="otherParentWorkPrefecture">
     勤務地（都道府県）
@@ -1084,7 +1133,7 @@ input[type="time"]:focus {
     <option value="">選択してください</option>
     <option value="徒歩">徒歩</option>
     <option value="自転車">自転車</option>
-    <option value="自動車">自動車</option>
+    <option value="車">車</option>
     <option value="電車">電車</option>
     <option value="バス">バス</option>
     <option value="その他">その他</option>
@@ -1115,7 +1164,7 @@ input[type="time"]:focus {
     <option value="">選択してください</option>
     <option value="徒歩">徒歩</option>
     <option value="自転車">自転車</option>
-    <option value="自動車">自動車</option>
+    <option value="車">車</option>
     <option value="電車">電車</option>
     <option value="バス">バス</option>
     <option value="その他">その他</option>
@@ -1136,6 +1185,7 @@ input[type="time"]:focus {
     <option value="30分以上">30分以上</option>
   </select>
 </div>
+      </div>
 </div>
       
 
@@ -1402,16 +1452,70 @@ const applicantReturnDateArea =
 const applicantReturnDate =
   document.getElementById('applicantReturnDate');
 
+const applicantWorkStartDateArea =
+  document.getElementById('applicantWorkStartDateArea');
+
+const applicantWorkStartDate =
+  document.getElementById('applicantWorkStartDate');
+
+const applicantWorkOtherArea =
+  document.getElementById('applicantWorkOtherArea');
+
+const applicantWorkOther =
+  document.getElementById('applicantWorkOther');
+
+const applicantWorkDetails =
+  document.getElementById('applicantWorkDetails');
+
+
 applicantWorkStatus.addEventListener('change', function() {
 
-  if (this.value === '育休中') {
+  const status = this.value;
+
+  // いったん全部リセット
+  applicantReturnDateArea.style.display = 'none';
+  applicantWorkStartDateArea.style.display = 'none';
+  applicantWorkOtherArea.style.display = 'none';
+
+  applicantReturnDate.value = '';
+  applicantWorkStartDate.value = '';
+  applicantWorkOther.value = '';
+
+  // 就労中
+  if (status === '就労中') {
+
+    applicantWorkDetails.style.display = 'block';
+
+  }
+
+  // 育休中
+  else if (status === '育休中') {
 
     applicantReturnDateArea.style.display = 'block';
+    applicantWorkDetails.style.display = 'block';
 
-  } else {
+  }
 
-    applicantReturnDateArea.style.display = 'none';
-    applicantReturnDate.value = '';
+  // 就労予定
+  else if (status === '就労予定') {
+
+    applicantWorkStartDateArea.style.display = 'block';
+    applicantWorkDetails.style.display = 'block';
+
+  }
+
+  // その他
+  else if (status === 'その他') {
+
+    applicantWorkOtherArea.style.display = 'block';
+    applicantWorkDetails.style.display = 'none';
+
+  }
+
+  // 求職中・就労していない・未選択
+  else {
+
+    applicantWorkDetails.style.display = 'none';
 
   }
 
@@ -1430,16 +1534,70 @@ const otherParentReturnDateArea =
 const otherParentReturnDate =
   document.getElementById('otherParentReturnDate');
 
+const otherParentWorkStartDateArea =
+  document.getElementById('otherParentWorkStartDateArea');
+
+const otherParentWorkStartDate =
+  document.getElementById('otherParentWorkStartDate');
+
+const otherParentWorkOtherArea =
+  document.getElementById('otherParentWorkOtherArea');
+
+const otherParentWorkOther =
+  document.getElementById('otherParentWorkOther');
+
+const otherParentWorkDetails =
+  document.getElementById('otherParentWorkDetails');
+
+
 otherParentWorkStatus.addEventListener('change', function() {
 
-  if (this.value === '育休中') {
+  const status = this.value;
+
+  // いったん全部リセット
+  otherParentReturnDateArea.style.display = 'none';
+  otherParentWorkStartDateArea.style.display = 'none';
+  otherParentWorkOtherArea.style.display = 'none';
+
+  otherParentReturnDate.value = '';
+  otherParentWorkStartDate.value = '';
+  otherParentWorkOther.value = '';
+
+  // 就労中
+  if (status === '就労中') {
+
+    otherParentWorkDetails.style.display = 'block';
+
+  }
+
+  // 育休中
+  else if (status === '育休中') {
 
     otherParentReturnDateArea.style.display = 'block';
+    otherParentWorkDetails.style.display = 'block';
 
-  } else {
+  }
 
-    otherParentReturnDateArea.style.display = 'none';
-    otherParentReturnDate.value = '';
+  // 就労予定
+  else if (status === '就労予定') {
+
+    otherParentWorkStartDateArea.style.display = 'block';
+    otherParentWorkDetails.style.display = 'block';
+
+  }
+
+  // その他
+  else if (status === 'その他') {
+
+    otherParentWorkOtherArea.style.display = 'block';
+    otherParentWorkDetails.style.display = 'none';
+
+  }
+
+  // 求職中・就労していない・未選択
+  else {
+
+    otherParentWorkDetails.style.display = 'none';
 
   }
 
