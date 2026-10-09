@@ -1722,7 +1722,7 @@ select:disabled {
 
     const API_URL =
       'https://script.google.com/macros/s/AKfycbwZaCZuEWMom6YFsxJ40O-fvVx_5LQH7EnZ4haHiby7r2w48EK_WO5czHHkbRVPHKqxVA/exec';
-
+let currentManagementId = '';
 
     async function initializeLiff() {
 
@@ -1791,7 +1791,9 @@ select:disabled {
 
         }
 
-
+currentManagementId =
+  result.application.managementId || '';
+        
         showApplication(
           result.application
         );
@@ -3117,6 +3119,49 @@ document
     behavior: 'smooth',
     block: 'start'
   });
+
+  });
+    // ==================================================
+// 事前シート送信
+// ==================================================
+
+document
+  .getElementById('submitButton')
+  .addEventListener('click', async function() {
+
+    const submitButton =
+      document.getElementById('submitButton');
+
+    if (!currentManagementId) {
+      alert('管理IDを確認できませんでした。もう一度画面を開き直してください。');
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = '送信しています…';
+
+    try {
+
+      alert(
+        '送信準備OK\n管理ID：' +
+        currentManagementId
+      );
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert(
+        '送信処理でエラーが発生しました。'
+      );
+
+    } finally {
+
+      submitButton.disabled = false;
+      submitButton.textContent =
+        'この内容で送信する';
+
+    }
 
   });
     initializeLiff();
