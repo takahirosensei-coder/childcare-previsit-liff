@@ -1683,6 +1683,7 @@ select:disabled {
     入力内容を確認する
   </button>
 </div>
+  </div>
   <!-- 確認画面 -->
 <div id="confirmScreen" style="display:none;">
 
@@ -1713,7 +1714,7 @@ select:disabled {
   </div>
 
 </div>
-</div>
+
       </div>
 
   <script>
@@ -3076,8 +3077,10 @@ ${
   <div class="info-value">${nurseryMessageValue || 'なし'}</div>
 </div>
 `;
+
     document.getElementById('application').style.display = 'none';
 document.getElementById('section05').style.display = 'none';
+    
     document
       .getElementById('confirmScreen')
       .style.display = 'block';
