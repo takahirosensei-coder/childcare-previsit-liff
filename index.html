@@ -262,6 +262,17 @@ input[type="time"]:focus {
   outline: none;
   border-color: #70856f;
 }
+
+.subsection-title {
+  margin-top: 26px;
+  padding: 10px 12px;
+  border-left: 4px solid #70856f;
+  background: #f5f6f2;
+  color: #526151;
+  font-size: 15px;
+  font-weight: 600;
+}
+    
   </style>
 </head>
 
@@ -573,28 +584,28 @@ input[type="time"]:focus {
   <div id="phoneDisplay" class="info-value"></div>
 </div>
 
-<div class="input-row">
-  <label class="input-label" for="motherName">
-    お母さま氏名
-  </label>
+<div id="applicantWorkSection">
 
-  <input
-    type="text"
-    id="motherName"
-    placeholder="お母さまのお名前"
-  >
-</div>
+  <div class="subsection-title" id="applicantWorkTitle">
+    保護者さまの就労情報
+  </div>
 
-<div class="input-row">
-  <label class="input-label" for="fatherName">
-    お父さま氏名
-  </label>
+  <div class="input-row">
+    <label class="input-label" for="applicantWorkStatus">
+      就労状況
+    </label>
 
-  <input
-    type="text"
-    id="fatherName"
-    placeholder="お父さまのお名前"
-  >
+    <select id="applicantWorkStatus">
+      <option value="">選択してください</option>
+      <option value="就労中">就労中</option>
+      <option value="育休中">育休中</option>
+      <option value="求職中">求職中</option>
+      <option value="就労予定">就労予定</option>
+      <option value="就労していない">就労していない</option>
+      <option value="その他">その他</option>
+    </select>
+  </div>
+
 </div>
 
       
@@ -735,25 +746,28 @@ document.getElementById('guardianRelationDisplay').textContent =
 document.getElementById('phoneDisplay').textContent =
   data.phone || '—';
 
+// 申込者の続柄に合わせて就労情報の見出しを変更
+const applicantWorkTitle =
+  document.getElementById('applicantWorkTitle');
 
-// 申込者が母・父の場合、氏名を自動入力
-const motherName =
-  document.getElementById('motherName');
+if (data.guardianRelation === '父') {
 
-const fatherName =
-  document.getElementById('fatherName');
+  applicantWorkTitle.textContent =
+    'お父さまの就労情報';
 
-if (data.guardianRelation === '母') {
+} else if (data.guardianRelation === '母') {
 
-  motherName.value =
-    data.guardianName || '';
+  applicantWorkTitle.textContent =
+    'お母さまの就労情報';
 
-} else if (data.guardianRelation === '父') {
+} else {
 
-  fatherName.value =
-    data.guardianName || '';
+  applicantWorkTitle.textContent =
+    '保護者さまの就労情報';
 
 }
+
+
 
 
       document.getElementById('application').style.display =
