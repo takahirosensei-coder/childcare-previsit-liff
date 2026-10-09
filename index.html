@@ -844,7 +844,7 @@ input[type="time"]:focus {
     <option value="">選択してください</option>
     <option value="徒歩">徒歩</option>
     <option value="自転車">自転車</option>
-    <option value="自動車">自動車</option>
+   <option value="車">車</option>
     <option value="電車">電車</option>
     <option value="バス">バス</option>
     <option value="その他">その他</option>
@@ -1216,7 +1216,7 @@ input[type="time"]:focus {
 <!-- ==================================================
      05 その他
 ================================================== -->
-<div class="section" id="section05">
+<div class="section" id="section05" style="display:none;">
 
   <div class="section-number">05</div>
   <h2 class="section-title">その他</h2>
@@ -1586,7 +1586,10 @@ if (data.guardianRelation === '父') {
 
 
       document.getElementById('application').style.display =
-        'block';
+  'block';
+
+document.getElementById('section05').style.display =
+  'block';
 
     }
 
