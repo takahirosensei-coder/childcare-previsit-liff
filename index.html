@@ -116,6 +116,73 @@
       font-size: 14px;
       line-height: 1.8;
     }
+    .input-row {
+  padding: 18px 0;
+  border-bottom: 1px solid #f0eee9;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 10px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.choice-group {
+  display: flex;
+  gap: 10px;
+}
+
+.choice-button {
+  flex: 1;
+  cursor: pointer;
+}
+
+.choice-button input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choice-button span {
+  display: block;
+  padding: 13px 12px;
+  border: 1px solid #d9d6cf;
+  border-radius: 10px;
+  background: #fff;
+  text-align: center;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.choice-button input:checked + span {
+  border-color: #70856f;
+  background: #f0f4ee;
+  color: #526151;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d9d6cf;
+  border-radius: 10px;
+  background: #fff;
+  color: #333;
+  font: inherit;
+  font-size: 16px;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #70856f;
+}
+
+.conditional {
+  display: none;
+}
   </style>
 </head>
 
@@ -143,23 +210,63 @@
       <div id="application" class="application">
 
         <div class="section-title">
-          お申込み済みの内容
-        </div>
+  01　お子さまについて
+</div>
 
-        <div class="info-row">
-          <div class="info-label">見学先</div>
-          <div id="nursery" class="info-value"></div>
-        </div>
+<div class="info-row">
+  <div class="info-label">お子さま氏名</div>
+  <div id="childName" class="info-value"></div>
+</div>
 
-        <div class="info-row">
-          <div class="info-label">お子さま氏名</div>
-          <div id="childName" class="info-value"></div>
-        </div>
+<div class="info-row">
+  <div class="info-label">生年月日</div>
+  <div id="birthDate" class="info-value"></div>
+</div>
 
-        <div class="info-row">
-          <div class="info-label">生年月日</div>
-          <div id="birthDate" class="info-value"></div>
-        </div>
+<div id="nurseryTemporary" style="display:none;">
+  <div id="nursery"></div>
+</div>
+<div class="input-row">
+  <div class="input-label">性別</div>
+  <div class="choice-group">
+    <label class="choice-button">
+      <input type="radio" name="gender" value="男児">
+      <span>男児</span>
+    </label>
+
+    <label class="choice-button">
+      <input type="radio" name="gender" value="女児">
+      <span>女児</span>
+    </label>
+  </div>
+</div>
+
+<div class="input-row">
+  <div class="input-label">アレルギー</div>
+  <div class="choice-group">
+    <label class="choice-button">
+      <input type="radio" name="allergy" value="なし">
+      <span>なし</span>
+    </label>
+
+    <label class="choice-button">
+      <input type="radio" name="allergy" value="あり">
+      <span>あり</span>
+    </label>
+  </div>
+</div>
+
+<div id="allergyDetailArea" class="input-row conditional">
+  <label class="input-label" for="allergyDetail">
+    アレルギーの詳細
+  </label>
+
+  <textarea
+    id="allergyDetail"
+    rows="3"
+    placeholder="例：卵、乳製品 など"
+  ></textarea>
+</div>
 
         <div class="info-row">
           <div class="info-label">希望クラス</div>
@@ -320,7 +427,7 @@
         data.desiredClass || '—';
 
       document.getElementById('desiredEntry').textContent =
-    formatDate(data.desiredEntry);
+  data.desiredEntry || '—';
 
       document.getElementById('guardianName').textContent =
         data.guardianName || '—';
@@ -365,7 +472,30 @@
 
     }
 
+document.querySelectorAll('input[name="allergy"]').forEach(function(input) {
 
+  input.addEventListener('change', function() {
+
+    const detailArea =
+      document.getElementById('allergyDetailArea');
+
+    const detailInput =
+      document.getElementById('allergyDetail');
+
+    if (this.value === 'あり') {
+
+      detailArea.style.display = 'block';
+
+    } else {
+
+      detailArea.style.display = 'none';
+      detailInput.value = '';
+
+    }
+
+  });
+
+});
     initializeLiff();
   </script>
 
