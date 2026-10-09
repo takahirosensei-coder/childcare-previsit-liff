@@ -214,6 +214,54 @@ select:disabled {
   font-size: 14px;
   line-height: 1.6;
 }
+    .weekday-group {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 7px;
+}
+
+.weekday-button {
+  cursor: pointer;
+}
+
+.weekday-button input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.weekday-button span {
+  display: block;
+  padding: 12px 0;
+  border: 1px solid #d9d6cf;
+  border-radius: 10px;
+  background: #fff;
+  text-align: center;
+  font-size: 14px;
+}
+
+.weekday-button input:checked + span {
+  border-color: #70856f;
+  background: #f0f4ee;
+  color: #526151;
+  font-weight: 600;
+}
+
+input[type="time"] {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d9d6cf;
+  border-radius: 10px;
+  background: #fff;
+  color: #333;
+  font: inherit;
+  font-size: 16px;
+}
+
+input[type="time"]:focus {
+  outline: none;
+  border-color: #70856f;
+}
   </style>
 </head>
 
@@ -413,7 +461,99 @@ select:disabled {
   >
 </div>
 
+<div class="section-title">
+  03　ご希望の保育について
+</div>
 
+<div class="info-row">
+  <div class="info-label">見学先</div>
+  <div id="nurseryDisplay" class="info-value"></div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">希望クラス</div>
+  <div id="desiredClassDisplay" class="info-value"></div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">入園希望時期</div>
+  <div id="desiredEntryDisplay" class="info-value"></div>
+</div>
+
+<div class="input-row">
+  <div class="input-label">希望曜日</div>
+
+  <div class="weekday-group">
+
+    <label class="weekday-button">
+      <input type="checkbox" name="desiredWeekdays" value="月">
+      <span>月</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="desiredWeekdays" value="火">
+      <span>火</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="desiredWeekdays" value="水">
+      <span>水</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="desiredWeekdays" value="木">
+      <span>木</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="desiredWeekdays" value="金">
+      <span>金</span>
+    </label>
+
+    <label class="weekday-button">
+      <input type="checkbox" name="desiredWeekdays" value="土">
+      <span>土</span>
+    </label>
+
+  </div>
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="desiredStartTime">
+    希望保育開始時間
+  </label>
+
+  <input
+    type="time"
+    id="desiredStartTime"
+    step="300"
+  >
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="desiredEndTime">
+    希望保育終了時間
+  </label>
+
+  <input
+    type="time"
+    id="desiredEndTime"
+    step="300"
+  >
+</div>
+
+<div class="input-row">
+  <div class="input-label">入園検討状況</div>
+
+  <select id="considerationStatus">
+    <option value="">選択してください</option>
+    <option value="第一希望">第一希望</option>
+    <option value="有力候補">有力候補</option>
+    <option value="他園と比較検討中">他園と比較検討中</option>
+    <option value="情報収集中">情報収集中</option>
+    <option value="その他">その他</option>
+  </select>
+</div>
 
         <div class="info-row">
           <div class="info-label">希望クラス</div>
@@ -574,6 +714,14 @@ select:disabled {
         data.desiredClass || '—';
 
       document.getElementById('desiredEntry').textContent =
+  data.desiredEntry || '—';
+      document.getElementById('nurseryDisplay').textContent =
+  data.nursery || '—';
+
+document.getElementById('desiredClassDisplay').textContent =
+  data.desiredClass || '—';
+
+document.getElementById('desiredEntryDisplay').textContent =
   data.desiredEntry || '—';
 
       document.getElementById('guardianName').textContent =
