@@ -2566,7 +2566,513 @@ function showOtherNurseries(currentNursery) {
 document
   .getElementById('confirmButton')
   .addEventListener('click', function() {
+const gender =
+  document.querySelector(
+    'input[name="gender"]:checked'
+  )?.value || '未選択';
 
+const allergy =
+  document.querySelector(
+    'input[name="allergy"]:checked'
+  )?.value || '未選択';
+
+const allergyDetail =
+  document.getElementById('allergyDetail')?.value || '';
+// 04 保護者さま情報：申込者
+const applicantWorkStatusValue =
+  document.getElementById('applicantWorkStatus')?.value || '未選択';
+
+const applicantReturnDateValue =
+  document.getElementById('applicantReturnDate')?.value || '';
+
+const applicantWorkStartDateValue =
+  document.getElementById('applicantWorkStartDate')?.value || '';
+
+const applicantWorkOtherValue =
+  document.getElementById('applicantWorkOther')?.value || '';
+
+const applicantWorkPrefectureValue =
+  document.getElementById('applicantWorkPrefecture')?.value || '';
+
+const applicantWorkCityValue =
+  document.getElementById('applicantWorkCity')?.value || '';
+
+const applicantWorkTownValue =
+  document.getElementById('applicantWorkTown')?.value || '';
+
+const applicantWorkWeekdaysValue =
+  Array.from(
+    document.querySelectorAll(
+      'input[name="applicantWorkWeekdays"]:checked'
+    )
+  ).map(function(item) {
+    return item.value;
+  }).join('・');
+
+const applicantWorkStartTimeValue =
+  document.getElementById('applicantWorkStartTime')?.value || '';
+
+const applicantWorkEndTimeValue =
+  document.getElementById('applicantWorkEndTime')?.value || '';
+
+const applicantCommuteMethodValue =
+  document.getElementById('applicantCommuteMethod')?.value || '';
+
+const applicantCommuteTimeValue =
+  document.getElementById('applicantCommuteTime')?.value || '';
+
+const applicantNurseryMethodValue =
+  document.getElementById('applicantNurseryMethod')?.value || '';
+
+const applicantNurseryTimeValue =
+  document.getElementById('applicantNurseryTime')?.value || '';
+   // 04 保護者さま情報：もう一方の保護者
+const otherParentNameValue =
+  document.getElementById('otherParentName')?.value || '';
+
+const otherParentWorkStatusValue =
+  document.getElementById('otherParentWorkStatus')?.value || '';
+
+const otherParentReturnDateValue =
+  document.getElementById('otherParentReturnDate')?.value || '';
+
+const otherParentWorkStartDateValue =
+  document.getElementById('otherParentWorkStartDate')?.value || '';
+
+const otherParentWorkOtherValue =
+  document.getElementById('otherParentWorkOther')?.value || '';
+
+const otherParentWorkPrefectureValue =
+  document.getElementById('otherParentWorkPrefecture')?.value || '';
+
+const otherParentWorkCityValue =
+  document.getElementById('otherParentWorkCity')?.value || '';
+
+const otherParentWorkTownValue =
+  document.getElementById('otherParentWorkTown')?.value || '';
+
+const otherParentWorkWeekdaysValue =
+  Array.from(
+    document.querySelectorAll(
+      'input[name="otherParentWorkWeekdays"]:checked'
+    )
+  ).map(function(item) {
+    return item.value;
+  }).join('・');
+
+const otherParentWorkStartTimeValue =
+  document.getElementById('otherParentWorkStartTime')?.value || '';
+
+const otherParentWorkEndTimeValue =
+  document.getElementById('otherParentWorkEndTime')?.value || '';
+
+const otherParentCommuteMethodValue =
+  document.getElementById('otherParentCommuteMethod')?.value || '';
+
+const otherParentCommuteTimeValue =
+  document.getElementById('otherParentCommuteTime')?.value || '';
+
+const otherParentNurseryMethodValue =
+  document.getElementById('otherParentNurseryMethod')?.value || '';
+
+const otherParentNurseryTimeValue =
+  document.getElementById('otherParentNurseryTime')?.value || '';
+// 05 その他
+const discoverySourceValue =
+  Array.from(
+    document.querySelectorAll(
+      'input[name="discoverySource"]:checked'
+    )
+  ).map(function(item) {
+    return item.value;
+  }).join('・');
+
+const referrerNameValue =
+  document.getElementById('referrerName')?.value || '';
+
+const discoveryOtherValue =
+  document.getElementById('discoveryOther')?.value || '';
+
+const otherNurseriesValue =
+  Array.from(
+    document.querySelectorAll(
+      'input[name="otherNurseries"]:checked'
+    )
+  ).map(function(item) {
+    return item.value;
+  }).join('・');
+
+const nurseryMessageValue =
+  document.getElementById('nurseryMessage')?.value || '';
+    // 02 ご住所について
+const prefecture =
+  document.getElementById('prefecture').value || '未選択';
+
+const city =
+  document.getElementById('citySelect').style.display !== 'none'
+    ? document.getElementById('citySelect').value
+    : document.getElementById('cityInput').value;
+
+const addressDetail =
+  document.getElementById('addressDetail').value || '';
+  // 03 ご希望の保育について
+const desiredWeekdays =
+  Array.from(
+    document.querySelectorAll(
+      'input[name="desiredWeekdays"]:checked'
+    )
+  ).map(function(item) {
+    return item.value;
+  }).join('・') || '未選択';
+
+const desiredStartTime =
+  document.getElementById('desiredStartTime')?.value || '未入力';
+
+const desiredEndTime =
+  document.getElementById('desiredEndTime')?.value || '未入力';
+
+const considerationStatus =
+  document.getElementById('considerationStatus')?.value || '未選択';
+const confirmContent =
+  document.getElementById('confirmContent');
+
+confirmContent.innerHTML = `
+  <div class="section-title">
+    01　お子さまについて
+  </div>
+
+  <div class="info-row">
+    <div class="info-label">お子さま氏名</div>
+    <div class="info-value">
+      ${document.getElementById('childName').textContent}
+    </div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-label">生年月日</div>
+    <div class="info-value">
+      ${document.getElementById('birthDate').textContent}
+    </div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-label">性別</div>
+    <div class="info-value">${gender}</div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-label">アレルギー</div>
+    <div class="info-value">${allergy}</div>
+  </div>
+
+  ${
+    allergy === 'あり' && allergyDetail
+      ? `
+        <div class="info-row">
+          <div class="info-label">アレルギー詳細</div>
+          <div class="info-value">${allergyDetail}</div>
+        </div>
+      `
+      : ''
+  }
+  <div class="section-title">
+  02　ご住所について
+</div>
+
+<div class="info-row">
+  <div class="info-label">都道府県</div>
+  <div class="info-value">${prefecture}</div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">市区町村</div>
+  <div class="info-value">${city || '未入力'}</div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">町名・番地・建物名</div>
+  <div class="info-value">${addressDetail || '未入力'}</div>
+</div>
+      <div class="section-title">
+  03　ご希望の保育について
+</div>
+
+<div class="info-row">
+  <div class="info-label">希望曜日</div>
+  <div class="info-value">${desiredWeekdays}</div>
+</div>
+<div class="info-row">
+  <div class="info-label">希望保育開始時間</div>
+  <div class="info-value">${desiredStartTime}</div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">希望保育終了時間</div>
+  <div class="info-value">${desiredEndTime}</div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">入園検討状況</div>
+  <div class="info-value">${considerationStatus}</div>
+</div>
+<div class="section-title">
+  04　保護者さま情報
+</div>
+
+<div class="info-row">
+  <div class="info-label">保護者氏名</div>
+  <div class="info-value">
+    ${document.getElementById('guardianName').textContent}
+  </div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">続柄</div>
+  <div class="info-value">
+    ${document.getElementById('guardianRelation').textContent}
+  </div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">電話番号</div>
+  <div class="info-value">
+    ${document.getElementById('phone').textContent}
+  </div>
+</div>
+
+<div class="subsection-title">
+  ${document.getElementById('applicantWorkTitle').textContent}
+</div>
+
+<div class="info-row">
+  <div class="info-label">就労状況</div>
+  <div class="info-value">${applicantWorkStatusValue || '未選択'}</div>
+</div>
+
+${
+  applicantWorkStatusValue === '育休中'
+    ? `
+      <div class="info-row">
+        <div class="info-label">復職予定日</div>
+        <div class="info-value">${applicantReturnDateValue || '未入力'}</div>
+      </div>
+    `
+    : ''
+}
+
+${
+  applicantWorkStatusValue === '就労予定'
+    ? `
+      <div class="info-row">
+        <div class="info-label">就労開始予定日</div>
+        <div class="info-value">${applicantWorkStartDateValue || '未入力'}</div>
+      </div>
+    `
+    : ''
+}
+
+${
+  applicantWorkStatusValue === 'その他'
+    ? `
+      <div class="info-row">
+        <div class="info-label">その他の内容</div>
+        <div class="info-value">${applicantWorkOtherValue || '未入力'}</div>
+      </div>
+    `
+    : ''
+}
+
+${
+  ['就労中', '育休中', '就労予定'].includes(applicantWorkStatusValue)
+    ? `
+      <div class="info-row">
+        <div class="info-label">勤務地</div>
+        <div class="info-value">
+          ${[
+            applicantWorkPrefectureValue,
+            applicantWorkCityValue,
+            applicantWorkTownValue
+          ].filter(Boolean).join(' ') || '未入力'}
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">勤務曜日</div>
+        <div class="info-value">${applicantWorkWeekdaysValue || '未選択'}</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">勤務時間</div>
+        <div class="info-value">
+          ${applicantWorkStartTimeValue || '未入力'}
+          〜
+          ${applicantWorkEndTimeValue || '未入力'}
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">通勤手段</div>
+        <div class="info-value">${applicantCommuteMethodValue || '未選択'}</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">通勤時間</div>
+        <div class="info-value">${applicantCommuteTimeValue || '未入力'}</div>
+      </div>
+    `
+    : ''
+}
+
+<div class="info-row">
+  <div class="info-label">自宅から園までの通園手段</div>
+  <div class="info-value">${applicantNurseryMethodValue || '未選択'}</div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">自宅から園までの所要時間</div>
+  <div class="info-value">${applicantNurseryTimeValue || '未入力'}</div>
+</div>
+
+<div class="subsection-title">
+  ${document.getElementById('otherParentTitle').textContent}
+</div>
+
+<div class="info-row">
+  <div class="info-label">
+    ${document.getElementById('otherParentNameLabel').textContent}
+  </div>
+  <div class="info-value">${otherParentNameValue || '未入力'}</div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">就労状況</div>
+  <div class="info-value">${otherParentWorkStatusValue || '未選択'}</div>
+</div>
+
+${
+  otherParentWorkStatusValue === '育休中'
+    ? `
+      <div class="info-row">
+        <div class="info-label">復職予定日</div>
+        <div class="info-value">${otherParentReturnDateValue || '未入力'}</div>
+      </div>
+    `
+    : ''
+}
+
+${
+  otherParentWorkStatusValue === '就労予定'
+    ? `
+      <div class="info-row">
+        <div class="info-label">就労開始予定日</div>
+        <div class="info-value">${otherParentWorkStartDateValue || '未入力'}</div>
+      </div>
+    `
+    : ''
+}
+
+${
+  otherParentWorkStatusValue === 'その他'
+    ? `
+      <div class="info-row">
+        <div class="info-label">その他の内容</div>
+        <div class="info-value">${otherParentWorkOtherValue || '未入力'}</div>
+      </div>
+    `
+    : ''
+}
+
+${
+  ['就労中', '育休中', '就労予定'].includes(otherParentWorkStatusValue)
+    ? `
+      <div class="info-row">
+        <div class="info-label">勤務地</div>
+        <div class="info-value">
+          ${[
+            otherParentWorkPrefectureValue,
+            otherParentWorkCityValue,
+            otherParentWorkTownValue
+          ].filter(Boolean).join(' ') || '未入力'}
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">勤務曜日</div>
+        <div class="info-value">${otherParentWorkWeekdaysValue || '未選択'}</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">勤務時間</div>
+        <div class="info-value">
+          ${otherParentWorkStartTimeValue || '未入力'}
+          〜
+          ${otherParentWorkEndTimeValue || '未入力'}
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">通勤手段</div>
+        <div class="info-value">${otherParentCommuteMethodValue || '未選択'}</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">通勤時間</div>
+        <div class="info-value">${otherParentCommuteTimeValue || '未入力'}</div>
+      </div>
+    `
+    : ''
+}
+
+<div class="info-row">
+  <div class="info-label">自宅から園までの通園手段</div>
+  <div class="info-value">${otherParentNurseryMethodValue || '未選択'}</div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">自宅から園までの所要時間</div>
+  <div class="info-value">${otherParentNurseryTimeValue || '未入力'}</div>
+</div>
+<div class="section-title">
+  05　その他
+</div>
+
+<div class="info-row">
+  <div class="info-label">当園を何で知りましたか？</div>
+  <div class="info-value">${discoverySourceValue || '未選択'}</div>
+</div>
+
+${
+  discoverySourceValue.includes('知人・友人からの紹介')
+    ? `
+      <div class="info-row">
+        <div class="info-label">紹介者名</div>
+        <div class="info-value">${referrerNameValue || '未入力'}</div>
+      </div>
+    `
+    : ''
+}
+
+${
+  discoverySourceValue.includes('その他')
+    ? `
+      <div class="info-row">
+        <div class="info-label">その他の内容</div>
+        <div class="info-value">${discoveryOtherValue || '未入力'}</div>
+      </div>
+    `
+    : ''
+}
+
+<div class="info-row">
+  <div class="info-label">他に興味のある園</div>
+  <div class="info-value">${otherNurseriesValue || '未選択'}</div>
+</div>
+
+<div class="info-row">
+  <div class="info-label">園への連絡事項</div>
+  <div class="info-value">${nurseryMessageValue || 'なし'}</div>
+</div>
+`;
     document
       .getElementById('confirmScreen')
       .style.display = 'block';
