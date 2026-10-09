@@ -618,6 +618,15 @@ select:disabled {
  <select id="prefecture">
   <option value="">選択してください</option>
 
+  <optgroup label="よく選択される地域">
+    <option value="東京都">東京都</option>
+    <option value="埼玉県">埼玉県</option>
+    <option value="千葉県">千葉県</option>
+  </optgroup>
+
+  <optgroup label="──────────" disabled>
+  </optgroup>
+
   <optgroup label="北海道">
     <option value="北海道">北海道</option>
   </optgroup>
@@ -896,6 +905,19 @@ select:disabled {
   <select id="applicantWorkPrefecture">
     <option value="">選択してください</option>
 
+     <optgroup label="関東">
+      <option value="茨城県">茨城県</option>
+      <option value="栃木県">栃木県</option>
+      <option value="群馬県">群馬県</option>
+      <option value="埼玉県">埼玉県</option>
+      <option value="千葉県">千葉県</option>
+      <option value="東京都">東京都</option>
+      <option value="神奈川県">神奈川県</option>
+    </optgroup>
+
+    <optgroup label="──────────" disabled>
+</optgroup>
+
     <optgroup label="北海道">
       <option value="北海道">北海道</option>
     </optgroup>
@@ -907,16 +929,6 @@ select:disabled {
       <option value="秋田県">秋田県</option>
       <option value="山形県">山形県</option>
       <option value="福島県">福島県</option>
-    </optgroup>
-
-    <optgroup label="関東">
-      <option value="茨城県">茨城県</option>
-      <option value="栃木県">栃木県</option>
-      <option value="群馬県">群馬県</option>
-      <option value="埼玉県">埼玉県</option>
-      <option value="千葉県">千葉県</option>
-      <option value="東京都">東京都</option>
-      <option value="神奈川県">神奈川県</option>
     </optgroup>
 
     <optgroup label="中部">
@@ -1207,6 +1219,19 @@ select:disabled {
   <select id="otherParentWorkPrefecture">
     <option value="">選択してください</option>
 
+ <optgroup label="関東">
+      <option value="茨城県">茨城県</option>
+      <option value="栃木県">栃木県</option>
+      <option value="群馬県">群馬県</option>
+      <option value="埼玉県">埼玉県</option>
+      <option value="千葉県">千葉県</option>
+      <option value="東京都">東京都</option>
+      <option value="神奈川県">神奈川県</option>
+    </optgroup>
+
+    <optgroup label="──────────" disabled>
+</optgroup>
+    
     <optgroup label="北海道">
       <option value="北海道">北海道</option>
     </optgroup>
@@ -1218,16 +1243,6 @@ select:disabled {
       <option value="秋田県">秋田県</option>
       <option value="山形県">山形県</option>
       <option value="福島県">福島県</option>
-    </optgroup>
-
-    <optgroup label="関東">
-      <option value="茨城県">茨城県</option>
-      <option value="栃木県">栃木県</option>
-      <option value="群馬県">群馬県</option>
-      <option value="埼玉県">埼玉県</option>
-      <option value="千葉県">千葉県</option>
-      <option value="東京都">東京都</option>
-      <option value="神奈川県">神奈川県</option>
     </optgroup>
 
     <optgroup label="中部">
@@ -2035,22 +2050,23 @@ otherParentWorkStatus.addEventListener('change', function() {
 const cityData = {
 
   '東京都': [
-    '千代田区', '中央区', '港区', '新宿区', '文京区',
-    '台東区', '墨田区', '江東区', '品川区', '目黒区',
-    '大田区', '世田谷区', '渋谷区', '中野区', '杉並区',
-    '豊島区', '北区', '荒川区', '板橋区', '練馬区',
-    '足立区', '葛飾区', '江戸川区',
-    '八王子市', '立川市', '武蔵野市', '三鷹市', '青梅市',
-    '府中市', '昭島市', '調布市', '町田市', '小金井市',
-    '小平市', '日野市', '東村山市', '国分寺市', '国立市',
-    '福生市', '狛江市', '東大和市', '清瀬市', '東久留米市',
-    '武蔵村山市', '多摩市', '稲城市', '羽村市', 'あきる野市',
-    '西東京市',
-    '瑞穂町', '日の出町', '檜原村', '奥多摩町',
-    '大島町', '利島村', '新島村', '神津島村',
-    '三宅村', '御蔵島村', '八丈町', '青ヶ島村', '小笠原村'
-  ],
-
+  '足立区',
+  '──────────',
+  '千代田区', '中央区', '港区', '新宿区', '文京区',
+  '台東区', '墨田区', '江東区', '品川区', '目黒区',
+  '大田区', '世田谷区', '渋谷区', '中野区', '杉並区',
+  '豊島区', '北区', '荒川区', '板橋区', '練馬区',
+  '足立区', '葛飾区', '江戸川区',
+  '八王子市', '立川市', '武蔵野市', '三鷹市', '青梅市',
+  '府中市', '昭島市', '調布市', '町田市', '小金井市',
+  '小平市', '日野市', '東村山市', '国分寺市', '国立市',
+  '福生市', '狛江市', '東大和市', '清瀬市', '東久留米市',
+  '武蔵村山市', '多摩市', '稲城市', '羽村市', 'あきる野市',
+  '西東京市',
+  '瑞穂町', '日の出町', '檜原村', '奥多摩町',
+  '大島町', '利島村', '新島村', '神津島村',
+  '三宅村', '御蔵島村', '八丈町', '青ヶ島村', '小笠原村'
+],
   '埼玉県': [
     'さいたま市', '川越市', '熊谷市', '川口市', '行田市',
     '秩父市', '所沢市', '飯能市', '加須市', '本庄市',
@@ -2119,15 +2135,25 @@ prefectureSelect.addEventListener('change', function() {
 
     cityData[prefecture].forEach(function(city) {
 
-      const option =
-        document.createElement('option');
+  const option =
+    document.createElement('option');
 
-      option.value = city;
-      option.textContent = city;
+  option.textContent = city;
 
-      citySelect.appendChild(option);
+  if (city === '──────────') {
 
-    });
+    option.disabled = true;
+    option.value = '';
+
+  } else {
+
+    option.value = city;
+
+  }
+
+  citySelect.appendChild(option);
+
+});
 
     
   }
@@ -2142,6 +2168,7 @@ prefectureSelect.addEventListener('change', function() {
       '<option value="">都道府県を先に選択してください</option>';
 
     cityInput.style.display = 'none';
+  
 
   }
 
