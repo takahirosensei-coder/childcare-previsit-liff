@@ -183,6 +183,37 @@ textarea:focus {
 .conditional {
   display: none;
 }
+    select,
+input[type="text"] {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d9d6cf;
+  border-radius: 10px;
+  background: #fff;
+  color: #333;
+  font: inherit;
+  font-size: 16px;
+}
+
+select:focus,
+input[type="text"]:focus {
+  outline: none;
+  border-color: #70856f;
+}
+
+select:disabled {
+  background: #f5f4f1;
+  color: #aaa;
+}
+
+.auto-value {
+  padding: 13px;
+  border-radius: 10px;
+  background: #f3f6f1;
+  color: #526151;
+  font-size: 14px;
+  line-height: 1.6;
+}
   </style>
 </head>
 
@@ -267,6 +298,122 @@ textarea:focus {
     placeholder="例：卵、乳製品 など"
   ></textarea>
 </div>
+        <div class="section-title">
+  02　ご住所について
+</div>
+
+<div class="input-row">
+  <label class="input-label" for="prefecture">
+    都道府県
+  </label>
+
+ <select id="prefecture">
+  <option value="">選択してください</option>
+
+  <optgroup label="北海道">
+    <option value="北海道">北海道</option>
+  </optgroup>
+
+  <optgroup label="東北">
+    <option value="青森県">青森県</option>
+    <option value="岩手県">岩手県</option>
+    <option value="宮城県">宮城県</option>
+    <option value="秋田県">秋田県</option>
+    <option value="山形県">山形県</option>
+    <option value="福島県">福島県</option>
+  </optgroup>
+
+  <optgroup label="関東">
+    <option value="茨城県">茨城県</option>
+    <option value="栃木県">栃木県</option>
+    <option value="群馬県">群馬県</option>
+    <option value="埼玉県">埼玉県</option>
+    <option value="千葉県">千葉県</option>
+    <option value="東京都">東京都</option>
+    <option value="神奈川県">神奈川県</option>
+  </optgroup>
+
+  <optgroup label="中部">
+    <option value="新潟県">新潟県</option>
+    <option value="富山県">富山県</option>
+    <option value="石川県">石川県</option>
+    <option value="福井県">福井県</option>
+    <option value="山梨県">山梨県</option>
+    <option value="長野県">長野県</option>
+    <option value="岐阜県">岐阜県</option>
+    <option value="静岡県">静岡県</option>
+    <option value="愛知県">愛知県</option>
+  </optgroup>
+
+  <optgroup label="近畿">
+    <option value="三重県">三重県</option>
+    <option value="滋賀県">滋賀県</option>
+    <option value="京都府">京都府</option>
+    <option value="大阪府">大阪府</option>
+    <option value="兵庫県">兵庫県</option>
+    <option value="奈良県">奈良県</option>
+    <option value="和歌山県">和歌山県</option>
+  </optgroup>
+
+  <optgroup label="中国">
+    <option value="鳥取県">鳥取県</option>
+    <option value="島根県">島根県</option>
+    <option value="岡山県">岡山県</option>
+    <option value="広島県">広島県</option>
+    <option value="山口県">山口県</option>
+  </optgroup>
+
+  <optgroup label="四国">
+    <option value="徳島県">徳島県</option>
+    <option value="香川県">香川県</option>
+    <option value="愛媛県">愛媛県</option>
+    <option value="高知県">高知県</option>
+  </optgroup>
+
+  <optgroup label="九州・沖縄">
+    <option value="福岡県">福岡県</option>
+    <option value="佐賀県">佐賀県</option>
+    <option value="長崎県">長崎県</option>
+    <option value="熊本県">熊本県</option>
+    <option value="大分県">大分県</option>
+    <option value="宮崎県">宮崎県</option>
+    <option value="鹿児島県">鹿児島県</option>
+    <option value="沖縄県">沖縄県</option>
+  </optgroup>
+</select>
+</div>
+
+<div class="input-row">
+  <label class="input-label">
+    市区町村
+  </label>
+
+  <!-- 東京都・埼玉県・千葉県の場合 -->
+  <select id="citySelect" disabled>
+    <option value="">都道府県を先に選択してください</option>
+  </select>
+
+  <!-- その他の道府県の場合 -->
+  <input
+    type="text"
+    id="cityInput"
+    placeholder="市区町村を入力してください"
+    style="display:none;"
+  >
+</div>
+<div class="input-row">
+  <label class="input-label" for="addressDetail">
+    町名・番地・建物名
+  </label>
+
+  <input
+    type="text"
+    id="addressDetail"
+    placeholder="例：梅島1-2-3 ○○マンション101"
+  >
+</div>
+
+
 
         <div class="info-row">
           <div class="info-label">希望クラス</div>
@@ -494,6 +641,134 @@ document.querySelectorAll('input[name="allergy"]').forEach(function(input) {
     }
 
   });
+
+});
+    // ==================================================
+// 住所：都道府県 → 市区町村
+// 東京・埼玉・千葉のみ市区町村を選択式にする
+// ==================================================
+
+const cityData = {
+
+  '東京都': [
+    '千代田区', '中央区', '港区', '新宿区', '文京区',
+    '台東区', '墨田区', '江東区', '品川区', '目黒区',
+    '大田区', '世田谷区', '渋谷区', '中野区', '杉並区',
+    '豊島区', '北区', '荒川区', '板橋区', '練馬区',
+    '足立区', '葛飾区', '江戸川区',
+    '八王子市', '立川市', '武蔵野市', '三鷹市', '青梅市',
+    '府中市', '昭島市', '調布市', '町田市', '小金井市',
+    '小平市', '日野市', '東村山市', '国分寺市', '国立市',
+    '福生市', '狛江市', '東大和市', '清瀬市', '東久留米市',
+    '武蔵村山市', '多摩市', '稲城市', '羽村市', 'あきる野市',
+    '西東京市',
+    '瑞穂町', '日の出町', '檜原村', '奥多摩町',
+    '大島町', '利島村', '新島村', '神津島村',
+    '三宅村', '御蔵島村', '八丈町', '青ヶ島村', '小笠原村'
+  ],
+
+  '埼玉県': [
+    'さいたま市', '川越市', '熊谷市', '川口市', '行田市',
+    '秩父市', '所沢市', '飯能市', '加須市', '本庄市',
+    '東松山市', '春日部市', '狭山市', '羽生市', '鴻巣市',
+    '深谷市', '上尾市', '草加市', '越谷市', '蕨市',
+    '戸田市', '入間市', '朝霞市', '志木市', '和光市',
+    '新座市', '桶川市', '久喜市', '北本市', '八潮市',
+    '富士見市', '三郷市', '蓮田市', '坂戸市', '幸手市',
+    '鶴ヶ島市', '日高市', '吉川市', 'ふじみ野市',
+    '白岡市',
+    '伊奈町', '三芳町', '毛呂山町', '越生町',
+    '滑川町', '嵐山町', '小川町', '川島町', '吉見町',
+    '鳩山町', 'ときがわ町', '横瀬町', '皆野町',
+    '長瀞町', '小鹿野町', '東秩父村', '美里町',
+    '神川町', '上里町', '寄居町', '宮代町', '杉戸町',
+    '松伏町'
+  ],
+
+  '千葉県': [
+    '千葉市', '銚子市', '市川市', '船橋市', '館山市',
+    '木更津市', '松戸市', '野田市', '茂原市', '成田市',
+    '佐倉市', '東金市', '旭市', '習志野市', '柏市',
+    '勝浦市', '市原市', '流山市', '八千代市', '我孫子市',
+    '鴨川市', '鎌ケ谷市', '君津市', '富津市', '浦安市',
+    '四街道市', '袖ケ浦市', '八街市', '印西市', '白井市',
+    '富里市', '南房総市', '匝瑳市', '香取市', '山武市',
+    'いすみ市', '大網白里市',
+    '酒々井町', '栄町', '神崎町', '多古町', '東庄町',
+    '九十九里町', '芝山町', '横芝光町', '一宮町',
+    '睦沢町', '白子町', '長柄町', '長南町', '大多喜町',
+    '御宿町', '鋸南町'
+  ]
+
+};
+
+
+const prefectureSelect =
+  document.getElementById('prefecture');
+
+const citySelect =
+  document.getElementById('citySelect');
+
+const cityInput =
+  document.getElementById('cityInput');
+
+
+prefectureSelect.addEventListener('change', function() {
+
+  const prefecture = this.value;
+
+  // 一度リセット
+  citySelect.innerHTML =
+    '<option value="">選択してください</option>';
+
+  cityInput.value = '';
+
+
+  // 東京・埼玉・千葉
+  if (cityData[prefecture]) {
+
+    citySelect.style.display = 'block';
+    citySelect.disabled = false;
+
+    cityInput.style.display = 'none';
+
+
+    cityData[prefecture].forEach(function(city) {
+
+      const option =
+        document.createElement('option');
+
+      option.value = city;
+      option.textContent = city;
+
+      citySelect.appendChild(option);
+
+    });
+
+  }
+
+  // 都道府県未選択
+  else if (!prefecture) {
+
+    citySelect.style.display = 'block';
+    citySelect.disabled = true;
+
+    citySelect.innerHTML =
+      '<option value="">都道府県を先に選択してください</option>';
+
+    cityInput.style.display = 'none';
+
+  }
+
+  // その他の道府県
+  else {
+
+    citySelect.style.display = 'none';
+    citySelect.disabled = true;
+
+    cityInput.style.display = 'block';
+
+  }
 
 });
     initializeLiff();
