@@ -2581,6 +2581,37 @@ const allergy =
 
 const allergyDetail =
   document.getElementById('allergyDetail')?.value || '';
+    // 02 ご住所について
+const prefecture =
+  document.getElementById('prefecture')?.value || '未選択';
+
+const city =
+  document.getElementById('citySelect').style.display !== 'none'
+    ? document.getElementById('citySelect').value
+    : document.getElementById('cityInput').value;
+
+const addressDetail =
+  document.getElementById('addressDetail')?.value || '';
+
+
+// 03 ご希望の保育について
+const desiredWeekdays =
+  Array.from(
+    document.querySelectorAll(
+      'input[name="desiredWeekdays"]:checked'
+    )
+  ).map(function(item) {
+    return item.value;
+  }).join('・') || '未選択';
+
+const desiredStartTime =
+  document.getElementById('desiredStartTime')?.value || '未入力';
+
+const desiredEndTime =
+  document.getElementById('desiredEndTime')?.value || '未入力';
+
+const considerationStatus =
+  document.getElementById('considerationStatus')?.value || '未選択';
 // 04 保護者さま情報：申込者
 const applicantWorkStatusValue =
   document.getElementById('applicantWorkStatus')?.value || '未選択';
@@ -3093,10 +3124,7 @@ document
   });
 
   });
-    // ==================================================
-// 事前シート送信
-// ==================================================
-
+  
 // ==================================================
 // 事前シート送信
 // ==================================================
